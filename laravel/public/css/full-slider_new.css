@@ -1,0 +1,6 @@
+/* CSS used here will be applied after bootstrap.css */
+.dropdown-menu {
+  position: fixed;
+  top: 80px; /*height of main menu*/
+  width: 100%
+}
