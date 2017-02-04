@@ -12,10 +12,10 @@
     <title>Cheap Tech Geeks</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/full-slider.css" rel="stylesheet">
+    <link href="{{url('/css/full-slider.css')}}" rel="stylesheet">
     <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -36,34 +36,40 @@
     <header id="myCarousel" class="carousel slide">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
+            @if(!empty($count))
+                @for ($i = 0; $i < $count; $i++)
+                    @if($i == '0')
+            <li data-target="#myCarousel" class="active" data-slide-to="{{$i}}"></li>
+                    @else
+                        <li data-target="#myCarousel" data-slide-to="{{$i}}"></li>
+                        @endif
+                @endfor
+                @endif
         </ol>
 
         <!-- Wrapper for Slides -->
         <div class="carousel-inner">
-            <div class="item active">
-                <!-- Set the first background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('assets/lake.jpg');"></div>
-                <div class="carousel-caption">
-                    <h2>Caption 1</h2>
-                </div>
-            </div>
-            <div class="item">
-                <!-- Set the second background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('assets/beach.jpg');"></div>
-                <div class="carousel-caption">
-                    <h2>Caption 2</h2>
-                </div>
-            </div>
-            <div class="item">
-                <!-- Set the third background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('assets/colors.jpg');"></div>
-                <div class="carousel-caption">
-                    <h2>Caption 3</h2>
-                </div>
-            </div>
+            @if(!empty($slider))
+                @foreach($slider as $s)
+                    @if($s->id == $active_id)
+                    <div class="item active">
+                            <!-- Set the first background image using inline CSS below. -->
+                            <div class="fill" style="background-image:url({{$s->slider}});"></div>
+                            <div class="carousel-caption">
+                                <h2>{{$s->caption}}</h2>
+                            </div>
+                        </div>
+                    @else
+                        <div class="item">
+                            <!-- Set the first background image using inline CSS below. -->
+                            <div class="fill" style="background-image:url({{$s->slider}});"></div>
+                            <div class="carousel-caption">
+                                <h2>{{$s->caption}}</h2>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            @endif
         </div>
 
         <!-- Controls -->
@@ -110,30 +116,6 @@
     <!-- /.container -->
  <footer id="footer">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-6 col-sm-3 column">
-                    <h4>Information</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="">Products</a></li>
-                        <li><a href="">Services</a></li>
-                        <li><a href="">Benefits</a></li>
-                        <li><a href="">Developers</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-6 col-sm-3 column">
-                    <h4>About</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-sm-3 column">
-                    
-                </div>
-                
-            </div>
             <br/>
             <a href="//http:www.doublet.design">DoubleT.Design</a> ©2017</span>
         </div>

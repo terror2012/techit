@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Services</title>
+        <title>Contact Us</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="css/contact.css"/>
+        <link rel="stylesheet" href="{{url('/css/bootstrap.min.css')}}"/>
+        <link rel="stylesheet" href="{{url('/css/contact.css')}}"/>
     </head>
 
 <body>
@@ -12,11 +12,11 @@
 
 @include('layouts/navbar')
     
- <div class="container padding text-center">
+ <div class="container padding text-center" style="@if(!empty($general['contact_img']))background-image: url('{{url($general['contact_img'])}}') @endif">
      <div class="row">
         <div class="col-md-6">
-        
-        
+        <h1>Contact</h1>
+            <h2>@if(!empty($general['contact_capt'])){{$general['contact_capt']}} @endif</h2>
         </div>
         
        
@@ -89,9 +89,9 @@
 
     
     
-<script src="js/jquery.js"></script>
+<script src="{{url('/js/jquery.js')}}"></script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<script src="{{url('/js/bootstrap.js')}}"></script>
     </body>
 
 

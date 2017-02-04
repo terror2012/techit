@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Eloquent\comments;
+use App\Eloquent\general_settings;
 use App\Eloquent\reply;
 use App\Eloquent\user_info;
 use Illuminate\Http\Request;
@@ -13,6 +14,9 @@ class CommentsController extends Controller
 {
     public function index()
     {
+        $gen = general_settings::find('1');
+        $genData['comment_img'] = $gen->comment_img;
+        $genData['comment_capt'] = $gen->comment_capt;
         $commentsData = [];
         $replyData = [];
         $userData = [];
@@ -43,13 +47,13 @@ class CommentsController extends Controller
                     $replyData[$re->post_id][$re->id]['timestamp'] = $re->created_at;
                     $replyData[$re->post_id][$re->id]['email'] = $re->user->email;
                 }
-                return view('comments')->with('comments', $commentsData)->with('reply', $replyData)->with('user_info', $userData);
+                return view('comments')->with('comments', $commentsData)->with('reply', $replyData)->with('user_info', $userData)->with('gen', $genData);
             }
 
-            return view('comments')->with('comments', $commentsData)->with('user_info', $userData);
+            return view('comments')->with('comments', $commentsData)->with('user_info', $userData)->with('gen', $genData);
         }
 
-        return view('comments');
+        return view('comments')->with('gen', $genData);
     }
     public function addReply(Request $r)
     {

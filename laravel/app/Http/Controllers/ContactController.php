@@ -18,6 +18,8 @@ class ContactController extends Controller
             $generalData['email'] = $general->email;
             $generalData['hours'] = $general->hours;
             $generalData['days'] = $general->days;
+            $generalData['contact_img'] = $general->contact_img;
+            $generalData['contact_capt'] = $general->contact_capt;
             return view('contact')->with('general', $generalData);
         }
         return view('contact');

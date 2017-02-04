@@ -12,10 +12,10 @@
     <title>Comments</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/Comments.css" rel="stylesheet">
+    <link href="{{url('/css/Comments.css')}}" rel="stylesheet">
     <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -31,9 +31,10 @@
 
    @include('layouts/navbar')
 
-    <header><div class="jumbotron jumbotron-fluid jumbotron-schedule">
+    <header><div class="jumbotron jumbotron-fluid jumbotron-schedule" style="@if(!empty($gen['comment_img']))background-image: url('{{url($gen['comment_img'])}}') @endif">
   <div class="container">
-    
+    <h1>Comment Section</h1>
+      <h2>@if(!empty($gen['comment_capt'])){{$gen['comment_capt']}} @endif</h2>
     
   </div>
 </div></header>
@@ -194,38 +195,17 @@
  <footer id="footer">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xs-6 col-sm-3 column">
-                    <h4>Information</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="">Products</a></li>
-                        <li><a href="">Services</a></li>
-                        <li><a href="">Benefits</a></li>
-                        <li><a href="">Developers</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-6 col-sm-3 column">
-                    <h4>About</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-sm-3 column">
-                    
-                </div>
-                
+
             </div>
             <br/>
             <a href="//http:www.doublet.design">DoubleT.Design</a> ©2017</span>
         </div>
     </footer>
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{{url('/js/jquery.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{url('/js/bootstrap.min.js')}}"></script>
 
     <!-- Script to Activate the Carousel -->
     <script>

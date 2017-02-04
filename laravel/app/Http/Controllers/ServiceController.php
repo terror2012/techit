@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Eloquent\general_settings;
 use App\Eloquent\service_list;
 use App\Eloquent\service_sections;
 use Illuminate\Http\Request;
@@ -22,8 +23,12 @@ class ServiceController extends Controller
                $serviceInfo[$serv->section_id][$serv->id]['name'] = $serv->name;
                $serviceInfo[$serv->section_id][$serv->id]['image'] = $serv->image;
                $serviceInfo[$serv->section_id][$serv->id]['description'] = $serv->description;
+               $serviceInfo[$serv->section_id][$serv->id]['link'] = $serv->link;
            }
         }
-        return view('services')->with('services', $serviceInfo)->with(compact('section'));
+        $gen = general_settings::find('1');
+        $genData['service_img'] = $gen->service_img;
+        $genData['service_capt'] = $gen->service_capt;
+        return view('services')->with('services', $serviceInfo)->with(compact('section'))->with('serv', $genData);
     }
 }

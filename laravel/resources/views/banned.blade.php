@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>404</title>
+    <title>Banned Page</title>
 
     <link rel="stylesheet" href="{{url('/404_assets/css/style.css')}}" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css' />

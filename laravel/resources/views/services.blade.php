@@ -3,8 +3,8 @@
     <head>
         <title>Services</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="css/services.css"/>
+        <link rel="stylesheet" href="{{url('/css/bootstrap.min.css')}}"/>
+        <link rel="stylesheet" href="{{url('/css/services.css')}}"/>
     </head>
 
 <body>
@@ -13,10 +13,10 @@
     @include('layouts/navbar')
     
    <!-- Jumbotron -->
-    <div class="jumbotron">
+    <div class="jumbotron" style="@if(!empty($gen['service_img']))background-image: url('{{url($gen['service_img'])}}') @endif">
     <div class="container">
         <h1>Services</h1>
-        <h2>We provide Tech Support For Your Gadgets</h2>
+        <h2>@if(!empty($gen['service_capt'])){{$gen['service_capt']}} @endif</h2>
         
         
         </div>
@@ -42,23 +42,25 @@
                             <div class="col-md-8">
                                 <h1 class="text-center"><strong>{{$sec->name}}</strong></h1>
                                 <div class="row">
-                                    @if(!empty($services))
+                                    @if(!empty($services[$sec->id]))
                                         @foreach($services[$sec->id] as $serv)
 
-                                            <div class="col-md-4">
+                                            <a href="{{$serv['link']}}">
+                                                <div class="col-md-4">
 
-                                                <div class="thumbnail">
-                                                    <img alt="Bootstrap Thumbnail First" src="{{$serv['image']}}" width="600px" height="200px" />
-                                                    <div class="caption">
-                                                        <h3>
-                                                            {{$serv['name']}}
-                                                        </h3>
-                                                        <p>
-                                                            {{$serv['description']}}
-                                                        </p>
+                                                    <div class="thumbnail">
+                                                        <img alt="Bootstrap Thumbnail First" src="{{$serv['image']}}" width="600px" height="200px" />
+                                                        <div class="caption">
+                                                            <h3>
+                                                                {{$serv['name']}}
+                                                            </h3>
+                                                            <p>
+                                                                {{$serv['description']}}
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
 
                                         @endforeach
                                     @endif
@@ -86,9 +88,9 @@
 
     
     
-<script src="js/jquery.js"></script>
+<script src="{{url('/js/jquery.js')}}"></script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<script src="{{url('/js/bootstrap.js')}}"></script>
     </body>
 
 

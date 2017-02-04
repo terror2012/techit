@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <img class="img-responsive" src="../assets/logo.png" width="270" height="50" alt="">
+            <img class="img-responsive" src="{{url('/assets/logo.png')}}" width="270" height="50" alt="">
 
         </div>
         <div class="navbar-collapse collapse" id="bs-navbar">

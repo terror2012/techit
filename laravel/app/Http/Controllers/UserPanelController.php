@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Eloquent\general_settings;
 use App\Eloquent\user_info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,10 @@ class UserPanelController extends Controller
      */
     public function index()
     {
-        return view('my_account');
+        $gen = general_settings::find('1');
+        $genData['myacc_img'] = $gen->myacc_img;
+        $genData['myacc_capt'] = $gen->myacc_capt;
+        return view('my_account')->with('gen', $genData);
     }
     public function edit_user_info(Request $r)
     {

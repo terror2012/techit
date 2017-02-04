@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Eloquent\general_settings;
 use App\Eloquent\queries;
 use App\Eloquent\query_data;
 use Illuminate\Http\Request;
@@ -11,7 +12,9 @@ class ScheduleController extends Controller
 {
     public function index()
     {
-
+        $gen = general_settings::find('1');
+        $genData['schedule_img'] = $gen->schedule_img;
+        $genData['schedule_capt'] = $gen->schedule_capt;
         $query = queries::all();
         $queryD = query_data::all();
         $date = "";
@@ -63,9 +66,9 @@ class ScheduleController extends Controller
 
             /*$redis = Redis::connection();
             $redis->publish('business', '01:00PM');*/
-            return view('schedule')->with('days', $dayLoop)->with('dayExist', $DateExists)->with('timeExist', $existsTime);
+            return view('schedule')->with('days', $dayLoop)->with('dayExist', $DateExists)->with('timeExist', $existsTime)->with('gen', $genData);
         }
-        return view('schedule')->with('days', $dayLoop)->with('timeExist', null);
+        return view('schedule')->with('days', $dayLoop)->with('timeExist', null)->with('gen', $genData);
 
     }
     public function query()

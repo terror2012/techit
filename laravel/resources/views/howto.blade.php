@@ -3,18 +3,18 @@
     <head>
         <title>How To</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="css/contact.css"/>
+        <link rel="stylesheet" href="{{url('/css/bootstrap.min.css')}}"/>
+        <link rel="stylesheet" href="{{url('/css/contact.css')}}"/>
     </head>
 
 <body>
    
    @include('layouts/navbar')
 
-   <div class="jumbotron">
+   <div class="jumbotron" style="@if(!empty($gen['howto_img']))background-image: url('{{url($gen['howto_img'])}}') @endif">
        <div class="container">
            <h1>How To</h1>
-           <h2>How To Tutorials</h2>
+           <h2>@if(!empty($gen['howto_capt'])){{$gen['howto_capt']}} @endif</h2>
 
 
        </div>
@@ -51,7 +51,7 @@
                                     <p> <strong>{{$how->description}}</strong></p>
 
                                     <p>
-                                        <a class="btn btn-primary" href="#">Play Video</a> <a class="btn" href="#">Read Article</a>
+                                        <a class="btn btn-primary" href="{{$how->youtube_link}}">Play Video</a>
                                     </p>
                                 </div>
                             </div>
