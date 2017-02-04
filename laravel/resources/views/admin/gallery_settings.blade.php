@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title class="tittle"><span class="glyphicon glyphicon-folder-open"></span> Content Manager</title>
+    <title class="tittle">Gallery Settings</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{url('/admin_assets/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -42,7 +42,7 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
+                    <a href="{{url('/admin')}}">
                         <img src="{{url('/admin_assets/img/logo.png')}}" width="230" height="50" alt="">
                     </a>
                     
@@ -51,21 +51,13 @@
                     <a href="index.blade.php"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>
                 </li>
                 <hr />
-                 <li class="item">
-                    <a href="index.blade.php">General Settings</a>
-                    
+                <li class="item">
+                    <a href="{{url('/admin/how_to')}}">HowTo Settings</a>
+
                 </li>
-                 <li class="item">
-                    <a href="index.blade.php">HowTo Settings</a>
-                    
-                </li>
-                 <li class="item">
-                    <a href="index.blade.php">Schedule Settings</a>
-                    
-                </li>
-                 <li class="item">
-                    <a href="index.blade.php">Gallery Settings</a>
-                    
+                <li class="item">
+                    <a href="{{url('/admin/gallery')}}">Gallery Settings</a>
+
                 </li>
                 
                
@@ -157,13 +149,13 @@
                         <div class="control-group form-group">
                         <div class="controls">
                             <label></label>
-                            <textarea rows="1" name="landingTitle" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                            <textarea rows="1" name="landingTitle" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none">{{$g['landing_title']}}</textarea>
                         
                         <h1>Landing Page Description</h1>
                         <div class="control-group form-group">
                         <div class="controls">
                             <label></label>
-                            <textarea rows="10" name="landingDescription" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                            <textarea rows="10" name="landingDescription" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none">{{$g['landing_desc']}}</textarea>
                             <button type="submit" class="btn btn-info btn-lg">Submit</button>
                         </div>
                         </div>
@@ -176,7 +168,7 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewAb" src="" width="256" height="256" alt="preview"/>
+                                <img id="previewAb" src="{{$g['about_img']}}" width="256" height="256" alt="preview"/>
                             </div>
 
                              <H1>About Us Top Cover</H1>
@@ -189,7 +181,7 @@
                         <div class="control-group form-group">
                         <div class="controls">
                             <label></label>
-                            <textarea name="AboutCaption" rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                            <textarea name="AboutCaption" rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none">{{$g['about_capt']}}</textarea>
                             <button type="submit" class="btn btn-info btn-lg">Submit</button>
                         </div>
                             
@@ -202,7 +194,7 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewCm" src="" width="256" height="256" alt="preview"/>
+                                <img id="previewCm" src="{{$g['comment_img']}}" width="256" height="256" alt="preview"/>
                             </div>
 
                              <H1>Comments Top Cover</H1>
@@ -215,7 +207,7 @@
                         <div class="control-group form-group">
                         <div class="controls">
                             <label></label>
-                            <textarea name="commCaption" rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                            <textarea name="commCaption" rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none">{{$g['comment_capt']}}</textarea>
                             <button type="submit" class="btn btn-info btn-lg">Submit</button>
                         </div>
                             
@@ -229,7 +221,7 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewCt" src="" width="256" height="256" alt="preview"/>
+                                <img id="previewCt" src="{{$g['contact_img']}}" width="256" height="256" alt="preview"/>
                             </div>
 
                              <H1>Contact Top Slider</H1>
@@ -242,7 +234,7 @@
                         <div class="control-group form-group">
                         <div class="controls">
                             <label></label>
-                            <textarea rows="10" cols="100" class="form-control" id="message" name="contactCaption" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                            <textarea rows="10" cols="100" class="form-control" id="message" name="contactCaption" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none">{{$g['contact_capt']}}</textarea>
                             <button type="submit" class="btn btn-info btn-lg">Submit</button>
                         </div>
                             
@@ -258,7 +250,7 @@
 
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewHT" src="" width="256" height="256" alt="preview"/>
+                                <img id="previewHT" src="{{$g['howto_img']}}" width="256" height="256" alt="preview"/>
                             </div>
 
                          <H1>HowTo Top Slider</H1>
@@ -271,7 +263,7 @@
                         <div class="control-group form-group">
                         <div class="controls">
                             <label></label>
-                            <textarea name="HTcaption" rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                            <textarea name="HTcaption" rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none">{{$g['howto_capt']}}</textarea>
                             <button type="submit" class="btn btn-info btn-lg">Submit</button>
                         </div>
                             
@@ -284,7 +276,7 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewMA" src="" width="256" height="256" alt="preview"/>
+                                <img id="previewMA" src="{{$g['myacc_img']}}" width="256" height="256" alt="preview"/>
                             </div>
 
                              <H1>My Account Top Cover</H1>
@@ -297,7 +289,7 @@
                         <div class="control-group form-group">
                         <div class="controls">
                             <label></label>
-                            <textarea name="myAccCaption" rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                            <textarea name="myAccCaption" rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none">{{$g['myacc_capt']}}</textarea>
                             <button type="submit" class="btn btn-info btn-lg">Submit</button>
                         </div>
                             
@@ -311,7 +303,7 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewSC" src="" width="256" height="256" alt="preview"/>
+                                <img id="previewSC" src="{{$g['schedule_img']}}" width="256" height="256" alt="preview"/>
                             </div>
 
                              <H1>Schedule Top Cover</H1>
@@ -324,7 +316,7 @@
                         <div class="control-group form-group">
                         <div class="controls">
                             <label></label>
-                            <textarea name="scheduleCaption" rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                            <textarea name="scheduleCaption" rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none">{{$g['schedule_capt']}}</textarea>
                             <button type="submit" class="btn btn-info btn-lg">Submit</button>
                         </div>
                             
@@ -337,7 +329,7 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewSV" src="" width="256" height="256" alt="preview"/>
+                                <img id="previewSV" src="{{$g['service_img']}}" width="256" height="256" alt="preview"/>
                             </div>
 
                              <H1>Services Top Cover</H1>
@@ -350,7 +342,7 @@
                         <div class="control-group form-group">
                         <div class="controls">
                             <label></label>
-                            <textarea name="serviceCaption" rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                            <textarea name="serviceCaption" rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none">{{$g['service_capt']}}</textarea>
                             <button type="submit" class="btn btn-info btn-lg">Submit</button>
                         </div>
                             

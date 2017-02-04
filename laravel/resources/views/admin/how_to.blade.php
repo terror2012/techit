@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title class="tittle"><span class="glyphicon glyphicon-folder-open"></span> Content Manager</title>
+    <title class="tittle">How To Settings</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../admin_assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('/admin_assets/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../admin_assets/css/simple-sidebar.css" rel="stylesheet">
+    <link href="{{url('/admin_assets/css/simple-sidebar.css')}}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,8 +40,8 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
-                        <img src="../admin_assets/img/logo.png" width="230" height="50" alt="">
+                    <a href="{{url('/admin')}}">
+                        <img src="..{{url('/admin_assets/img/logo.png')}}" width="230" height="50" alt="">
                     </a>
                     
                 </li>
@@ -54,21 +54,13 @@
                 
                 </li>
                 <hr />
-                 <li class="item">
-                    <a href="index.blade.php">General Settings</a>
-                    
+                <li class="item">
+                    <a href="{{url('/admin/how_to')}}">HowTo Settings</a>
+
                 </li>
-                 <li class="item">
-                    <a href="index.blade.php">HowTo Settings</a>
-                    
-                </li>
-                 <li class="item">
-                    <a href="index.blade.php">Schedule Settings</a>
-                    
-                </li>
-                 <li class="item">
-                    <a href="index.blade.php">Gallery Settings</a>
-                    
+                <li class="item">
+                    <a href="{{url('/admin/gallery')}}">Gallery Settings</a>
+
                 </li>
                 
                
@@ -141,10 +133,10 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../admin_assets/js/jquery.js"></script>
+    <script src="{{url('/admin_assets/js/jquery.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../admin_assets/js/bootstrap.min.js"></script>
+    <script src="{{url('/admin_assets/js/bootstrap.min.js')}}"></script>
 
     <!-- Menu Toggle Script -->
     <script>

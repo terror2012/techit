@@ -13,10 +13,10 @@
     <title>Admin Pannel</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../admin_assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('/admin_assets/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../admin_assets/css/simple-sidebar.css" rel="stylesheet">
+    <link href="{{url('/admin_assets/css/simple-sidebar.css')}}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,7 +42,7 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="{{url('/admin/')}}">
-                        <img src="../admin_assets/img/logo.png" width="230" height="50" alt="">
+                        <img src="{{url('/admin_assets/img/logo.png')}}" width="230" height="50" alt="">
                     </a>
                     
                 </li>
@@ -93,10 +93,10 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../admin_assets/js/jquery.js"></script>
+    <script src="{{url('/admin_assets/js/jquery.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../admin_assets/js/bootstrap.min.js"></script>
+    <script src="{{url('/admin_assets/js/bootstrap.min.js')}}"></script>
 
     <!-- Menu Toggle Script -->
     <script>

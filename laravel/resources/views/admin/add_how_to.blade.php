@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title class="tittle"><span class="glyphicon glyphicon-folder-open"></span> Content Manager</title>
+    <title class="tittle">Add How To</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{url('/admin_assets/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -50,21 +50,13 @@
                 </li>
                 
                 <hr />
-                 <li class="item">
-                    <a href="index.blade.php">General Settings</a>
-                    
+                <li class="item">
+                    <a href="{{url('/admin/how_to')}}">HowTo Settings</a>
+
                 </li>
-                 <li class="item">
-                    <a href="index.blade.php">HowTo Settings</a>
-                    
-                </li>
-                 <li class="item">
-                    <a href="index.blade.php">Schedule Settings</a>
-                    
-                </li>
-                 <li class="item">
-                    <a href="index.blade.php">Gallery Settings</a>
-                    
+                <li class="item">
+                    <a href="{{url('/admin/gallery')}}">Gallery Settings</a>
+
                 </li>
                 
                
@@ -80,7 +72,7 @@
                 <div class="row">
                     <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
                     <div class="col-lg-12">
-                        <h1><span class="glyphicon glyphicon-pencil"></span> Content Editor</h1>
+                        <h1><span class="glyphicon glyphicon-pencil"></span> Add How To Item</h1>
                     </div>
                     
                     

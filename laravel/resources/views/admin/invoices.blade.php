@@ -12,12 +12,12 @@
     <title>Invoice</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../admin_assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('/admin_assets/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../admin_assets/css/simple-sidebar.css" rel="stylesheet">
+    <link href="{{url('/admin_assets/css/simple-sidebar.css')}}" rel="stylesheet">
 
-    <link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="{{url('/css/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,7 +43,7 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="{{url('/admin')}}">
-                        <img src="../admin_assets/img/logo.png" width="230" height="50" alt="">
+                        <img src="{{url('/admin_assets/img/logo.png')}}" width="230" height="50" alt="">
                     </a>
                     
                 </li>
@@ -54,13 +54,13 @@
                 
                 <hr />
                 <li class="item">
-                    <a href="#">Invoice List</a>
+                    <a href="{{url('/admin/invoices')}}">Invoice List</a>
                 </li>
                 <li class="item">
-                    <a href="#">Clients</a>
+                    <a href="{{url('/admin/clients')}}">Clients</a>
                 </li>
                 <li class="item">
-                    <a href="#">Total Appointments</a>
+                    <a href="{{url('/admin/appointments')}}">Total appointments</a>
                 </li>
                
                 
@@ -132,10 +132,10 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../admin_assets/js/jquery.js"></script>
+    <script src="{{url('/admin_assets/js/jquery.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../admin_assets/js/bootstrap.min.js"></script>
+    <script src="{{url('/admin_assets/js/bootstrap.min.js')}}"></script>
 
     <!-- Menu Toggle Script -->
     <script>

@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Client Page</title>
+    <title>Invoice View</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../../admin_assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('/admin_assets/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../../admin_assets/css/simple-sidebar.css" rel="stylesheet">
+    <link href="{{url('/admin_assets/css/simple-sidebar.css')}}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,28 +40,28 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
-                <a href="#">
-                    <img src="../../admin_assets/img/logo.png" width="230" height="50" alt="">
+                <a href="{{url('/admin')}}">
+                    <img src="{{url('/admin_assets/img/logo.png')}}" width="230" height="50" alt="">
                 </a>
 
             </li>
             <li class="item">
-                <a href="content_manager.blade.php">Invoice List</a>
+                <a href="{{url('/admin/invoices')}}">Invoice List</a>
             </li>
             <li class="item">
-                <a href="content_manager.blade.php">Clients</a>
+                <a href="{{url('/admin/clients')}}">Clients</a>
             </li>
             <li class="item">
-                <a href="content_manager.blade.php">Total appointments</a>
+                <a href="{{url('/admin/appointments')}}">Total appointments</a>
             </li>
 
 
             <hr />
             <li class="item">
-                <a href="content_manager.blade.php"><span class="glyphicon glyphicon-folder-open"></span> Content Manager</a>
+                <a href="{{url('/admin/content_manager')}}"><span class="glyphicon glyphicon-folder-open"></span> Content Manager</a>
             </li>
             <li class="item">
-                <a href="invoices.blade.php"><span class="glyphicon glyphicon-calendar"></span> Schedule</a>
+                <a href="{{url('/admin/schedules')}}"><span class="glyphicon glyphicon-calendar"></span> Schedule</a>
             </li>
 
 
@@ -119,10 +119,10 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="../../admin_assets/js/jquery.js"></script>
+<script src="{{url('/admin_assets/js/jquery.js')}}"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="../../admin_assets/js/bootstrap.min.js"></script>
+<script src="{{url('/admin_assets/js/bootstrap.min.js')}}"></script>
 
 <!-- Menu Toggle Script -->
 <script>
