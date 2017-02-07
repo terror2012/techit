@@ -16,9 +16,14 @@ class IndexController extends Controller
         $generalData['landing_title'] = $settings->landing_title;
         $generalData['landing_desc'] = $settings->landing_desc;
         $slider = gallery::all();
-        $count = $slider->count();
-        $Act = $slider->first();
-        $ActID = $Act->id;
-        return view('index')->with('settings', $generalData)->with(compact('slider'))->with('count', $count)->with('active_id', $ActID);
+        if($slider->isNotEmpty())
+        {
+            $count = $slider->count();
+            $Act = $slider->first();
+            $ActID = $Act->id;
+            return view('index')->with('settings', $generalData)->with(compact('slider'))->with('count', $count)->with('active_id', $ActID);
+        }
+
+        return view('index')->with('settings', $generalData)->with(compact('slider'));
     }
 }

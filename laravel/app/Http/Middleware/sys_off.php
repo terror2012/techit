@@ -3,8 +3,11 @@
 namespace App\Http\Middleware;
 
 use App\Eloquent\general_settings;
+use App\Eloquent\User;
+use App\Eloquent\user_info;
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class sys_off
 {
@@ -42,6 +45,34 @@ class sys_off
                 $g->save();
                 return redirect()->route('home');
             }
+
+            //check if at least 1 admin exists
+        $usr = user_info::where('rank', '=', '3');
+            if($usr->count() == 0)
+            {
+                $hashedPass = Hash::make('admin');
+                $user = new User();
+                $user->name = 'Admin Admin';
+                $user->email = 'admin@admin.com';
+                $user->password = $hashedPass;
+                $user->timestamps;
+                $user->save();
+                $us = new user_info();
+                $us->first_name = 'Admin';
+                $us->last_name = 'Admin';
+                $us->email = 'admin@admin.com';
+                $us->phone = '0';
+                $us->contact = '1';
+                $us->city = 'City';
+                $us->state = 'State';
+                $us->address = 'Address';
+                $us->icon = 'img/default_avatar.jpg';
+                $us->status = '0';
+                $us->rank = '3';
+                $us->save();
+                return redirect()->route('home');
+            }
+
         return $next($request);
 
     }
