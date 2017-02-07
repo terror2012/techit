@@ -13,8 +13,8 @@ class IndexController extends Controller
     {
         $settings = general_settings::where('id', '=', '1')->first();
         $generalData = [];
-        $generalData['landing_title'] = $settings->Title;
-        $generalData['landing_desc'] = $settings->Description;
+        $generalData['landing_title'] = $settings->landing_title;
+        $generalData['landing_desc'] = $settings->landing_desc;
         $slider = gallery::all();
         $count = $slider->count();
         $Act = $slider->first();
