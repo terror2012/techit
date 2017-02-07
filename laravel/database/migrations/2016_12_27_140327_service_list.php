@@ -16,7 +16,6 @@ class ServiceList extends Migration
         Schema::create('services', function(Blueprint $t) {
            $t->increments('id');
            $t->integer('section_id')->nullable();
-           $t->foreign('section_id')->references('id')->on('section');
            $t->string('name');
            $t->string('image');
            $t->string('link');

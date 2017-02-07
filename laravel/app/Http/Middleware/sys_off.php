@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Eloquent\general_settings;
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class sys_off
 {
@@ -16,10 +17,16 @@ class sys_off
      */
     public function handle($request, Closure $next)
     {
-        $gen = general_settings::find('1')->first();
-        if($gen->offline_mode == '1')
+        if(Auth::check())
         {
-            return redirect()->route('offline');
+            $gen = general_settings::find('1')->first();
+            if($gen !== null)
+            {
+                if($gen->offline_mode == '1')
+                {
+                    return redirect()->route('offline');
+                }
+            }
         }
         return $next($request);
 

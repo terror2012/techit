@@ -15,9 +15,9 @@ class Replies extends Migration
     {
         Schema::create('replies', function(Blueprint $t){
             $t->increments('id');
-            $t->integer('user_id');
+            $t->integer('user_id')->unsigned();
             $t->foreign('user_id')->references('id')->on('users');
-            $t->integer('post_id');
+            $t->integer('post_id')->unsigned();
             $t->foreign('post_id')->references('id')->on('comments');
             $t->timestamps();
             $t->longtext('body');
