@@ -64,12 +64,12 @@ class sys_off
                 $us->phone = '0';
                 $us->contact = '1';
                 $us->city = 'City';
+                $us->zip = '0';
                 $us->state = 'State';
                 $us->address = 'Address';
                 $us->icon = 'img/default_avatar.jpg';
-                $us->status = '0';
+                $us->status = '1';
                 $us->rank = '3';
-                $us->timestamps;
                 $us->save();
                 return redirect()->route('home');
             }

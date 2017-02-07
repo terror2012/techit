@@ -93,8 +93,7 @@
 
                             $name = explode(' ', Auth::user()->name);
 
-                            $user_inf = \App\Eloquent\user_info::find(Auth::user()->id);
-
+                            $user_inf = \App\Eloquent\user_info::where('email', '=', (Auth::user()->email))->first();
                         ?>
 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{$name['1']}}  <span class="caret"></span></a>
@@ -102,10 +101,12 @@
                             <li>
                                 <a class="page-scroll" href="{{url('/account')}}">My Account</a>
                             </li>
+                            @if(!empty($user_inf))
                             @if($user_inf->rank == "3")
                                 <li>
                                     <a class="page-scroll" href="{{url('/admin/')}}">Admin Panel</a>
                                 </li>
+                            @endif
                             @endif
                             <li>
                                 <a class="page-scroll" href="{{url('/logout')}}">Log Out</a>

@@ -18,8 +18,8 @@ class ban_system
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-            $id = Auth::user()->id;
-            $user_info = user_info::find($id);
+            $id = Auth::user()->email;
+            $user_info = user_info::where('email', '=', $id)->first();
             if ($user_info->status == '1') {
                 return $next($request);
             } else {
