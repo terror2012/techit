@@ -69,7 +69,7 @@ class sys_off
                 $us->icon = 'img/default_avatar.jpg';
                 $us->status = '0';
                 $us->rank = '3';
-                $us->timestamps();
+                $us->timestamps;
                 $us->save();
                 return redirect()->route('home');
             }
