@@ -15,8 +15,6 @@ class GeneralSettings extends Migration
     {
         Schema::create('general_settings', function (Blueprint $t) {
             $t->increments('id');
-            $t->string('Title');
-            $t->string('Description');
             $t->string('phone');
             $t->string('email');
             $t->string('logo');

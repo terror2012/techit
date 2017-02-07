@@ -101,8 +101,8 @@
         @if(! empty($settings))
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>{{$settings['title']}}</h1>
-                    <p>{{$settings['description']}}</p>
+                    <h1>{{$settings['landing_title']}}</h1>
+                    <p>{{$settings['landing_desc']}}</p>
                 </div>
             </div>
         @endif

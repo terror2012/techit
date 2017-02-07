@@ -27,6 +27,6 @@ class ServiceSection extends Migration
      */
     public function down()
     {
-        Schema::drop('sections');
+        Schema::drop('section');
     }
 }

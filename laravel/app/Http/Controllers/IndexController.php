@@ -13,9 +13,8 @@ class IndexController extends Controller
     {
         $settings = general_settings::where('id', '=', '1')->first();
         $generalData = [];
-        $generalData['title'] = $settings->Title;
-        $generalData['description'] = $settings->Description;
-        $generalData['offlineMode'] = $settings->offline_mode;
+        $generalData['landing_title'] = $settings->Title;
+        $generalData['landing_desc'] = $settings->Description;
         $slider = gallery::all();
         $count = $slider->count();
         $Act = $slider->first();
