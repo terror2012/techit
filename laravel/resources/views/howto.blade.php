@@ -51,7 +51,7 @@
                                     <p> <strong>{{$how->description}}</strong></p>
 
                                     <p>
-                                        <a class="btn btn-primary" href="{{$how->youtube_link}}">Play Video</a>
+                                        <a style="color: black" class="btn btn-primary btn-lg" href="{{$how->youtube_url}}">Play Video</a>
                                     </p>
                                 </div>
                             </div>
