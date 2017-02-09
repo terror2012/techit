@@ -88,7 +88,7 @@
                                 <h2><strong>Youtube Video Link</strong></h2>
                                 <div class="form-group">
                                     <label for="link">Youtube Video Link</label>
-                                    <input type="text" class="form-control" name="link" id="link" value="{{$service['link']}}}"/>
+                                    <input type="text" class="form-control" name="link" id="link" value="{{$service['link']}}"/>
                                 </div>
          <!-- Title End -->                   
                             
