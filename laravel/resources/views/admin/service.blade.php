@@ -97,7 +97,7 @@
                       <div class="thumbnail">
                           <img src="../{{$s->image}}" id="preview" alt="" height="256" width="256">
                           <div class="caption">
-                              <h4>{{$s->name}}</h4>
+                              <h4>{{$s->name}} ID: {{$s->id}}</h4>
 
                               <p>{{$s->description}}</p>
                               <p><a href="{{url('/admin/edit_service/'.$s->id)}}" class="btn btn-info btn-xs" role="button">Edit</a> <a href="{{url('/admin/delete_service/'.$s->id)}}" class="btn btn-danger btn-xs" role="button">Delete</a></p>
