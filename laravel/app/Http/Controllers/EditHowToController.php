@@ -73,7 +73,7 @@ class EditHowToController extends Controller
             {
                 $how_to->youtube_url = Input::get('link');
             }
-            $h = howto::all()->orderBy('id', 'DESC')->first();
+            $h = howto::all()->sortByDesc('id')->first();
             if($h !== null)
             {
                 $id = $h->id + 1;
