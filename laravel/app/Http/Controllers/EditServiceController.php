@@ -63,7 +63,7 @@ class EditServiceController extends Controller
     }
     function addIndex()
     {
-        return view('admin/content_editor');
+        return view('admin/service_add');
     }
     function add(Request $r)
     {

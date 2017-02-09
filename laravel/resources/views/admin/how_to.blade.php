@@ -46,7 +46,7 @@
                     
                 </li>
                 <li class="item">
-                    <a href="index.blade.php"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+                    <a href="{{URL::previous()}}"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
                 </li>
                 <li class="item">
                 
