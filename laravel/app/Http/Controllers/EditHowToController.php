@@ -73,7 +73,16 @@ class EditHowToController extends Controller
             {
                 $how_to->youtube_url = Input::get('link');
             }
-            $num = 'HowTo_' . $how_to->id ;
+            $h = howto::all()->orderBy('id', 'DESC')->first();
+            if($h !== null)
+            {
+                $id = $h->id + 1;
+            }
+            else
+            {
+                $id = '1';
+            }
+            $num = 'HowTo_' . $id;
             $this->uploadImage($r, $num, Input::file('files'));
             $how_to->thumbnail = 'img/'.$num.'.jpg';
             $how_to->fulltext = Input::get('description');
