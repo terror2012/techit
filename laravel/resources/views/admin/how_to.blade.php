@@ -41,7 +41,7 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="{{url('/admin')}}">
-                        <img src="..{{url('/admin_assets/img/logo.png')}}" width="230" height="50" alt="">
+                        <img src="{{url('/admin_assets/img/logo.png')}}" width="230" height="50" alt="">
                     </a>
                     
                 </li>

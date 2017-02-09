@@ -93,6 +93,6 @@ class EditHowToController extends Controller
 
     private function uploadImage(Request $r, $name, $file)
     {
-        Image::make($file)->resize('256, 256')->save(public_path().'img/'.$name.'.jpg');
+        Image::make($file)->resize('256, 256')->save(public_path().'/img/'.$name.'.jpg');
     }
 }
