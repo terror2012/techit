@@ -6,6 +6,7 @@ use App\Eloquent\general_settings;
 use App\Eloquent\queries;
 use App\Eloquent\query_data;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redis;
 
 class ScheduleController extends Controller
@@ -71,8 +72,72 @@ class ScheduleController extends Controller
         return view('schedule')->with('days', $dayLoop)->with('timeExist', null)->with('gen', $genData);
 
     }
-    public function query()
+    public function query(Request $r)
     {
+        if(Input::has('firstName') && Input::has('lastName') && Input::has('email') && Input::has('phoneNumber')&&Input::has('city')&&Input::has('zip') && Input::has('street')&&Input::has('client')&&Input::has('state')&&Input::has('date')&&Input::has('time')&&Input::has('contact')&&Input::has('message'))
+        {
+            $fname = Input::get('firstName');
+            $lname = Input::get('lastName');
+            $email = Input::get('email');
+            $number = Input::get('number');
+            $city = Input::get('city');
+            $zip = Input::get('zip');
+            $street = Input::get('street');
+            $client = Input::get('client');
+            $state = Input::get('state');
+            $date = Input::get('date');
+            $time = Input::get('time');
+            $contact = Input::get('contact');
+            $message = Input::get('message');
 
+            $s = new queries();
+            $sD = new query_data();
+
+            //Schedule Inserts
+            $s->name = $fname . ' ' . $lname;
+            $s->email = $email;
+            $s->phone = $number;
+            $s->message = $message;
+            $s->contact = $contact;
+            $s->city = $city;
+            $s->state = $state;
+            $s->zip = $zip;
+            $s->address = $street;
+            $s->client = $client;
+            $s->timestamps;
+            $s->save();
+
+
+            //GetQueryID
+            $q = queries::all()->sortByDesc('id')->first();
+            if($q !== null)
+            {
+                $id = $q->id +1;
+            }
+            else
+            {
+                $id = '1';
+            }
+
+
+            //ScheduleData
+            $sD->query_id = $id;
+            $sD->date = $date;
+            $sD->time = $time;
+            $sD->ammount_to_pay = '15';
+            $sD->timestamps;
+            $sD->save();
+
+            $r->session()->put('query_id', $id);
+
+        }
+    }
+    function reg()
+    {
+        //TODO REGISTER USER
+    }
+    function PayAsGuest()
+    {
+        //TODO STRIPE PAYMENT SYSTEM
     }
 }

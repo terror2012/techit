@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class HowTo extends Migration
+class HowToSection extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class HowTo extends Migration
      */
     public function up()
     {
-        Schema::create('how_to', function(Blueprint $t) {
+        Schema::create('how_to_section', function(Blueprint $t){
            $t->increments('id');
-           $t->string('title');
-           $t->string('author');
-           $t->string('section_id');
-           $t->string('youtube_url');
-           $t->string('thumbnail')->nullable();
-           $t->longText('fulltext')->nullable();
+           $t->string('name');
+           $t->integer('HTcount')->nullable();
+           $t->integer('visible')->default('1');
+           $t->timestamps();
         });
     }
 
@@ -31,6 +29,6 @@ class HowTo extends Migration
      */
     public function down()
     {
-        Schema::drop('how_to');
+        Schema::drop('how_to_section');
     }
 }

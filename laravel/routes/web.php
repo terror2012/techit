@@ -22,17 +22,23 @@ Route::group(['middleware' => 'sys_off'], function(){
         Route::get('/comments', 'CommentsController@index')->name('comm');
         Route::post('/add_comment', 'CommentsController@addComments');
         Route::post('/add_reply', 'CommentsController@addReply');
+        Route::get('/delete_comment/{id}', 'CommentsController@deleteComm');
+        Route::get('/delete_reply/{id}', 'CommentsController@deleteReply');
         Route::get('/services', 'ServiceController@index');
         Route::get('/howto', 'HowToController@index');
+        Route::post('/howto/submit', 'HowToController@submit');
         Route::get('/contact', 'ContactController@index');
         Route::get('/account', 'UserPanelController@index')->name('account');
         Route::get('/edit_account_details', 'UserPanelController@edit_user_info');
+        Route::get('/how_to_ajax/{id}', 'HowToController@ajaxRespond');
         Route::get('/logout', function(){
             Auth::logout();
             return redirect()->action('IndexController@index');
         });
         Route::get('/schedule', 'ScheduleController@index');
         Route::post('/schedule', 'ScheduleController@query');
+        Route::get('/schedule_register', 'ScheduleController@reg');
+        Route::get('/schedule_pay_as_guest', 'ScheduleController@PayAsGuest');
         Route::get('/remote_connect', 'RemoteConnectController@index');
 
         Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
@@ -63,6 +69,8 @@ Route::group(['middleware' => 'sys_off'], function(){
             Route::post('/message/{id}', 'ClientsController@send');
             Route::get('/view_client/{id}', 'ClientsController@view');
             Route::post('/edit_client/{id}', 'ClientsController@edit');
+            Route::get('/ban_client/{id}', 'ClientsController@ban');
+            Route::get('/unban_client/{id}', 'ClientsController@unban');
             Route::get('/invoices', 'InvoicesController@index')->name('invoices');
             Route::get('/view_invoice/{id}', 'InvoicesController@view');
             Route::get('/send_reminder/{id}', 'InvoicesController@reminder');

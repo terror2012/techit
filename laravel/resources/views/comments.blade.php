@@ -74,6 +74,11 @@
                                             </p>
                                             <a class="btn btn-info btn-circle text-uppercase" data-toggle="collapse" href="#replyButton{{$comm['id']}}" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
                                             <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#reply{{$comm['id']}}"><span class="glyphicon glyphicon-comment"></span> @if(!empty($reply[$comm['id']])) {{count($reply[$comm['id']])}} @else 0 @endif comments</a>
+                                            @if(!empty($rank))
+                                                @if($rank == 'admin')
+                                                    <a href="{{url('/delete_comment/'.$comm['id'])}}" class="btn btn-danger btn-circle text-uppercase">Delete Comment</a>
+                                                @endif
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="collapse" id="replyButton{{$comm['id']}}">
@@ -116,7 +121,11 @@
                                                                 <p class="media-comment">
                                                                     {{$r['body']}}
                                                                 </p>
-                                                                <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                                                                @if(!empty($rank))
+                                                                    @if($rank == 'admin')
+                                                                        <a href="{{url('/delete_reply/'.$r['id'])}}" class="btn btn-danger btn-circle text-uppercase">Delete Reply</a>
+                                                                    @endif
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </li>
@@ -140,32 +149,36 @@
                     </ul> 
                 </div>
                 <div class="tab-pane" id="add-comment">
-                    <form action="{{url('/add_comment')}}" method="post" class="form-horizontal" id="commentForm" role="form">
-                        {{csrf_field()}}
-                        <div class="form-group">
-                            <label for="email" class="col-sm-2 control-label">Comment</label>
-                            <div class="col-sm-10">
-                              <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="uploadMedia" class="col-sm-2 control-label">Upload media</label>
-                            <div class="col-sm-10">                    
-                                <div class="input-group">
-                                  <div class="input-group-addon">http://</div>
-                                  <input type="text" class="form-control" name="uploadMedia" id="uploadMedia">
+                    @if(Auth::check())
+                        <form action="{{url('/add_comment')}}" method="post" class="form-horizontal" id="commentForm" role="form">
+                            {{csrf_field()}}
+                            <div class="form-group">
+                                <label for="email" class="col-sm-2 control-label">Comment</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
                                 </div>
                             </div>
-                        </div>
-                        
-                     <!-- End of Star Rating -->   
-                        
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">                    
-                                <input class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"/>
+                            <div class="form-group">
+                                <label for="uploadMedia" class="col-sm-2 control-label">Upload media</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">http://</div>
+                                        <input type="text" class="form-control" name="uploadMedia" id="uploadMedia">
+                                    </div>
+                                </div>
                             </div>
-                        </div>            
-                    </form>
+
+                            <!-- End of Star Rating -->
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <input class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"/>
+                                </div>
+                            </div>
+                        </form>
+                        @else
+                            <h1>Please Login to Comment. Thanks</h1>
+                    @endif
                 </div>
             </div>
         </div>

@@ -124,7 +124,7 @@
                         }
                         ?>
                 <td>{{$preference}}</td>
-                <td><a href="{{url('/admin/message/'.$c->id)}}"><span class="glyphicon glyphicon-envelope">Email</span></a>   <a href="{{url('/admin/view_client/'.$c->id)}}"><span class="fa fa-eye">View</span></a></td>
+                <td><a href="{{url('/admin/message/'.$c->id)}}"><span class="glyphicon glyphicon-envelope">Email</span></a>   <a href="{{url('/admin/view_client/'.$c->id)}}"><span class="fa fa-eye">View</span></a>@if($c->status == '1') <span class="fa fa-ban"><a href="{{url('/admin/ban_client/'.$c->id)}}">Ban Client</a></span> @else <span class="fa fa-user"><a href="{{url('/admin/unban_client/'.$c->id)}}">UnBan Client</a></span> @endif</td>
             </tr>
             @endforeach
         @endif

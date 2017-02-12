@@ -79,4 +79,20 @@ class ClientsController extends Controller
 
         return view('admin.clients_view')->with('client', $clientInfo)->with('appoint', $appointData);
     }
+    function ban($id)
+    {
+        $usr = user_info::find($id);
+        $usr->status = '0';
+        $usr->save();
+        flash('Client #'.$id.' has been banned', 'danger');
+        return redirect()->route('clients');
+    }
+    function unban($id)
+    {
+        $usr = user_info::find($id);
+        $usr->status = '1';
+        $usr->save();
+        flash('Client #'.$id.' has been unbanned', 'success');
+        return redirect()->route('clients');
+    }
 }

@@ -164,11 +164,11 @@
                         </form>
                         <hr />
                             <!-- About us Jumbotron -->
-                        <form action="{{url('/admin/gallery/aboutChange')}}" method="post">
+                        <form action="{{url('/admin/gallery/aboutChange')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewAb" src="{{$g['about_img']}}" width="256" height="256" alt="preview"/>
+                                <img id="previewAb" src="{{url($g['about_img'])}}" width="256" height="256" alt="preview"/>
                             </div>
 
                              <H1>About Us Top Cover</H1>
@@ -190,11 +190,11 @@
                     <hr />
                             
                             <!-- Comments Jumbotron -->
-                        <form action="{{url('/admin/gallery/commentChange')}}" method="post">
+                        <form action="{{url('/admin/gallery/commentChange')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewCm" src="{{$g['comment_img']}}" width="256" height="256" alt="preview"/>
+                                <img id="previewCm" src="{{url($g['comment_img'])}}" width="256" height="256" alt="preview"/>
                             </div>
 
                              <H1>Comments Top Cover</H1>
@@ -217,11 +217,11 @@
                         <hr/>
 
                   <!-- Contact Jumbotron -->
-                        <form action="{{url('/admin/gallery/contactChange')}}" method="post">
+                        <form action="{{url('/admin/gallery/contactChange')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewCt" src="{{$g['contact_img']}}" width="256" height="256" alt="preview"/>
+                                <img id="previewCt" src="{{url($g['contact_img'])}}" width="256" height="256" alt="preview"/>
                             </div>
 
                              <H1>Contact Top Slider</H1>
@@ -245,12 +245,12 @@
                             
                 <!-- HowTo Jumbotron -->
 
-                        <form action="{{url('/admin/gallery/howtoChange')}}" method="post">
+                        <form action="{{url('/admin/gallery/howtoChange')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
 
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewHT" src="{{$g['howto_img']}}" width="256" height="256" alt="preview"/>
+                                <img id="previewHT" src="{{url($g['howto_img'])}}" width="256" height="256" alt="preview"/>
                             </div>
 
                          <H1>HowTo Top Slider</H1>
@@ -272,11 +272,11 @@
                         <hr />
                             
                             <!-- My Account Jumbotron -->
-                        <form action="{{url('/admin/gallery/myaccChange')}}" method="post">
+                        <form action="{{url('/admin/gallery/myaccChange')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewMA" src="{{$g['myacc_img']}}" width="256" height="256" alt="preview"/>
+                                <img id="previewMA" src="{{url($g['myacc_img'])}}" width="256" height="256" alt="preview"/>
                             </div>
 
                              <H1>My Account Top Cover</H1>
@@ -299,11 +299,11 @@
                         <hr />
                     
                 <!-- Schedule Jumbotron -->
-                        <form action="{{url('/admin/gallery/scheduleChange')}}" method="post">
+                        <form action="{{url('/admin/gallery/scheduleChange')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewSC" src="{{$g['schedule_img']}}" width="256" height="256" alt="preview"/>
+                                <img id="previewSC" src="{{url($g['schedule_img'])}}" width="256" height="256" alt="preview"/>
                             </div>
 
                              <H1>Schedule Top Cover</H1>
@@ -325,11 +325,11 @@
                         <hr />
                         
                     <!-- Services Jumbotron -->
-                        <form action="{{url('/admin/gallery/serviceChange')}}" method="post">
+                        <form action="{{url('/admin/gallery/serviceChange')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="previewSV" src="{{$g['service_img']}}" width="256" height="256" alt="preview"/>
+                                <img id="previewSV" src="{{url($g['service_img'])}}" width="256" height="256" alt="preview"/>
                             </div>
 
                              <H1>Services Top Cover</H1>

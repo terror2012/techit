@@ -87,14 +87,6 @@
             <h2>Enter Your Contact Details</h2>
 
             <!-- Business Name Here -->
-            <form>
-                <div class="form-group form-group1">
-                    <label for="InputName">Business Name (If Applicable)</label>
-                    <input type="name" class="form-control" id="InputName" placeholder="Enter The Name Of Your Business">
-
-                </div>
-            </form>
-
 
 
             <!-- First Name Here -->
@@ -102,7 +94,7 @@
             <form>
                 <div class="form-group form-group1">
                     <label for="InputName">First Name</label>
-                    <input type="name" class="form-control" id="InputName" placeholder="Enter Your First Name">
+                    <input type="name" class="form-control" id="InputName" name="firstName" placeholder="Enter Your First Name">
 
                 </div>
             </form>
@@ -112,7 +104,7 @@
             <form>
                 <div class="form-group form-group1">
                     <label for="InputSurname">Last Name</label>
-                    <input type="name" class="form-control" id="InputSurname"  placeholder="Enter Your Last Name">
+                    <input type="name" class="form-control" id="InputSurname" name="lastName"  placeholder="Enter Your Last Name">
 
                 </div>
             </form>
@@ -122,7 +114,7 @@
             <form>
                 <div class="form-group form-group1">
                     <label for="InputEmail">Email address</label>
-                    <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" name="email" placeholder="Enter email">
 
                 </div>
             </form>
@@ -131,7 +123,7 @@
             <form>
                 <div class="form-group form-group1">
                     <label for="InputPhoneNumber">Phone Number</label>
-                    <input type="number" class="form-control" id="InputPhoneNumber"  placeholder="Enter Your Phone Number">
+                    <input type="number" class="form-control" id="InputPhoneNumber" name="phoneNumber"  placeholder="Enter Your Phone Number">
 
                 </div>
             </form>
@@ -159,7 +151,7 @@
             <form>
                 <div class="form-group form-group1">
                     <label for="InputSurname">City</label>
-                    <input type="name" class="form-control" id="InputSurname"  placeholder="Enter The City of The Service Location">
+                    <input type="name" class="form-control" id="InputSurname" name="city"  placeholder="Enter The City of The Service Location">
 
                 </div>
             </form>
@@ -191,7 +183,7 @@
             <form>
                 <div class="form-group form-zipCode">
                     <label for="InputPhoneNumber">Zip Code</label>
-                    <input type="number" class="form-control" id="InputPhoneNumber"  placeholder="Enter The Zip Code Of The Service Location">
+                    <input type="number" class="form-control" id="InputPhoneNumber" name="zip"  placeholder="Enter The Zip Code Of The Service Location">
 
                 </div>
             </form>
@@ -199,7 +191,7 @@
             <form>
                 <div class="form-group form-group1">
                     <label for="InputSurname">Street</label>
-                    <input type="name" class="form-control" id="InputSurname"  placeholder="Enter The Street Of Your Service Adress">
+                    <input type="name" class="form-control" id="InputSurname" name="street"  placeholder="Enter The Street Of Your Service Adress">
 
                 </div>
             </form>
@@ -268,12 +260,22 @@
                         <a  @if(!empty($timeExist)) @if(in_array('01:00 PM', $timeExist)) onClick="Time_for_client('01:00 PM')" @endif @else onClick="Time_for_client('01:00 AM')" @endif>01:00PM to 02:00PM</a>
                     </li>
                 </ul>
+
+
+
+                <div class="form-group form-group1">
+                    <label for="message">Describe your Problem</label>
+                    <textarea class="form-control" rows="6" name="message" id="message">Please Describe your Problem</textarea>
+                </div>
+
+
+
                 <h2><b>*To Confirm an appointment there is a 15$ fee</b></h2>
-                <input type="hidden" id="client_inp"/>
-                <input type="hidden" id="state_inp"/>
-                <input type="text" id="date_inp"/>
-                <input type="text" id="time_inp"/>
-                <input type="hidden" id="contact_inp"/>
+                <input type="hidden" id="client_inp" name="client"/>
+                <input type="hidden" id="state_inp" name="state"/>
+                <input type="text" id="date_inp" name="date"/>
+                <input type="text" id="time_inp" name="time"/>
+                <input type="hidden" id="contact_inp" name="contact"/>
 
             </div>
 
