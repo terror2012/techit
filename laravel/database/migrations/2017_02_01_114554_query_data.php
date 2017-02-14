@@ -22,6 +22,7 @@ class QueryData extends Migration
             $t->string('ammount_to_pay')->nullable();
             $t->string('date');
             $t->string('time');
+            $t->string('client_type');
             $t->timestamps();
         });
     }

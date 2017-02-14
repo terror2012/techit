@@ -67,14 +67,11 @@
                     
                          <form method="post" action="{{url('/edit_account_details')}}">
                              {{csrf_field()}}
-            
-            
-            
             <!-- First Name Here -->
 
   <div class="form-group form-group1">
     <label for="InputName">First Name</label>
-    <input type="name" class="form-control" id="InputName" placeholder="Enter Your First Name">
+    <input type="name" class="form-control" id="InputName" placeholder="Enter Your First Name" @if(!empty($user['f_name'])) value="{{$user['f_name']}}" @endif>
     
   </div>
             
@@ -82,7 +79,7 @@
 
   <div class="form-group form-group1">
     <label for="InputSurname">Last Name</label>
-    <input type="name" class="form-control" id="InputSurname"  placeholder="Enter Your Last Name">
+    <input type="name" class="form-control" id="InputSurname"  placeholder="Enter Your Last Name" @if(!empty($user['l_name'])) value="{{$user['l_name']}}" @endif>
     
   </div>
             
@@ -90,14 +87,14 @@
             <!-- Email Here -->
   <div class="form-group form-group1">
     <label for="InputEmail">Email address</label>
-    <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" @if(!empty($user['email'])) value="{{$user['email']}}" @endif>
     
   </div>
             <!-- Phone Number Here -->
 
   <div class="form-group form-group1">
     <label for="InputPhoneNumber">Phone Number</label>
-    <input type="number" class="form-control" id="InputPhoneNumber"  placeholder="Enter Your Phone Number">
+    <input type="number" class="form-control" id="InputPhoneNumber"  placeholder="Enter Your Phone Number" @if(!empty($user['phone'])) value="{{$user['phone']}}" @endif>
     
   </div>
                   <!-- Best Way To Contact Combo -->   
@@ -105,25 +102,21 @@
          <h2>Prefferred Method Of Contact</h2>
 <div class="dropdown">
     
-                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Select The Best Way to Contact You
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu text-center" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
-                    <li><a href="#">Email</a></li>
-                    <li><a href="#">Phone</a></li>
-                      <li><a href="#">Text</a></li>
-                    
-                  </ul>
+
+    <select id="contact" name="contact" class="form-control selectpicker" onchange="Contact_for_client()">
+        <option value="select"> Select Contact Preferences </option>
+        <option value="1">Email</option>
+        <option value="2">Phone</option>
+        <option value="3">Text</option>
+    </select>
            
                 </div>   
                 <!-- Service Adress -->
                 <h2>Service Adress</h2>
-                
                 <!-- City -->
   <div class="form-group form-group1">
     <label for="InputSurname">City</label>
-    <input type="name" class="form-control" id="City"  placeholder="Enter The City of The Service Location">
+    <input type="name" class="form-control" id="City"  placeholder="Enter The City of The Service Location" @if(!empty($user['city'])) value="{{$user['city']}}" @endif>
     
   </div>
                     
@@ -131,17 +124,12 @@
               <!-- State -->
                 
                 <div class="dropdown">
-    
-                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Select The State
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu text-center" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
-                    <li><a href="#">Nv</a></li>
-                    <li><a href="#">Ny</a></li>
-                      <li><a href="#">Etc.</a></li>
-                    
-                  </ul>
+                    <select id="state" name="state" class="form-control selectpicker" onchange="State_for_client()">
+                        <option value="select" >Please select your state</option>
+                        <option value="1">Centenial Hills</option>
+                        <option value="2">Summerlin</option>
+                        <option value="3">North Las Vegas</option>
+                    </select>
            <hr>
                 </div>   
             
@@ -149,13 +137,13 @@
 
   <div class="form-group form-zipCode">
     <label for="InputPhoneNumber">Zip Code</label>
-    <input type="number" class="form-control" id="ZipCode"  placeholder="Enter The Zip Code Of The Service Location">
+    <input type="number" class="form-control" id="ZipCode"  placeholder="Enter The Zip Code Of The Service Location" @if(!empty($user['zip'])) value="{{$user['zip']}}" @endif>
     
   </div>
                        <!-- Street Adress -->
   <div class="form-group form-group1">
     <label for="InputSurname">Street</label>
-    <input type="name" class="form-control" id="Address"  placeholder="Enter The Street Of Your Service Adress">
+    <input type="name" class="form-control" id="Address"  placeholder="Enter The Street Of Your Service Adress" @if(!empty($user['street'])) value="{{$user['street']}}" @endif>
     
   </div>
                              <button type="submit" class="btn-lg btn-danger"><strong>Edit My Details Details</strong></button>
@@ -173,23 +161,31 @@
       <th>Date</th>
       <th>Time</th>
     <th>Issue</th>
+        <th>Prefered Contact Method</th>
+        <th>Payment Status</th>
     <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">001</th>
-      <td>200$</td>
-      <td>02/01/2017</td>
-        <td>15:00</td>
-        <td><p>Computer is very slow. Probably broken hdd</p></td>
-    
-        <td><button class="btn-sm btn-primary text-center"><strong>Pay Bill</strong></button>
-        <button class="btn-sm btn-danger text-center"><strong>Cancel Appointment</strong></button>
-        
-        </td>
-    <td></td>
-      </tr>
+    @if(!empty($query))
+        @foreach($query as $q)
+            <tr>
+                <th>{{$q['id']}}</th>
+                <td>{{$q['value']}}</td>
+                <td>{{$q['date']}}</td>
+                <td>{{$q['time']}}</td>
+                <td><p>{{$q['message']}}</p></td>
+                <td>{{$q['contact']}}</td>
+                <td>{{$q['paid']}}</td>
+
+                <td><a href="#" class="btn-sm btn-primary text-center"><strong>Pay Bill</strong></a>
+                    <a href="#" class="btn-sm btn-danger text-center"><strong>Cancel Appointment</strong></a>
+
+                </td>
+                <td></td>
+            </tr>
+            @endforeach
+        @endif
       
    
   </tbody>
@@ -242,6 +238,21 @@
         interval: 5000 //changes the speed
     })
     </script>
+
+    @if(!empty($user['contact']))
+    <script>
+        var contact = document.getElementById('contact');
+        contact.value = '{{$user['contact']}}'
+    </script>
+
+    @endif
+    @if(!empty($user['state']))
+        <script>
+            var contact = document.getElementById('state');
+            contact.value = '{{$user['state']}}'
+        </script>
+
+    @endif
 
 </body>
 

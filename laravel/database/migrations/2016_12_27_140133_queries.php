@@ -24,7 +24,7 @@ class Queries extends Migration
             $t->string('state');
             $t->integer('zip');
             $t->string('address');
-            $t->integer('paid'); //0->not paid, 1->paid
+            $t->integer('paid')->default('0'); //0->not paid, 1->paid
             $t->string('amount')->nullable();
             $t->timestamps();
         });

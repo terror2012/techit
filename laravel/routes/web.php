@@ -36,7 +36,7 @@ Route::group(['middleware' => 'sys_off'], function(){
             return redirect()->action('IndexController@index');
         });
         Route::get('/schedule', 'ScheduleController@index');
-        Route::post('/schedule', 'ScheduleController@query');
+        Route::post('/schedule/submit', 'ScheduleController@query');
         Route::get('/schedule_register', 'ScheduleController@reg');
         Route::get('/schedule_pay_as_guest', 'ScheduleController@PayAsGuest');
         Route::get('/remote_connect', 'RemoteConnectController@index');

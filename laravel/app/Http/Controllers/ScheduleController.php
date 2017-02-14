@@ -6,6 +6,7 @@ use App\Eloquent\general_settings;
 use App\Eloquent\queries;
 use App\Eloquent\query_data;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redis;
 
@@ -79,7 +80,7 @@ class ScheduleController extends Controller
             $fname = Input::get('firstName');
             $lname = Input::get('lastName');
             $email = Input::get('email');
-            $number = Input::get('number');
+            $number = Input::get('phoneNumber');
             $city = Input::get('city');
             $zip = Input::get('zip');
             $street = Input::get('street');
@@ -103,7 +104,6 @@ class ScheduleController extends Controller
             $s->state = $state;
             $s->zip = $zip;
             $s->address = $street;
-            $s->client = $client;
             $s->timestamps;
             $s->save();
 
@@ -122,15 +122,18 @@ class ScheduleController extends Controller
 
             //ScheduleData
             $sD->query_id = $id;
+            $sD->user_id = Auth::user()->id;
             $sD->date = $date;
             $sD->time = $time;
             $sD->ammount_to_pay = '15';
             $sD->timestamps;
+            $sD->client_type = $client;
             $sD->save();
 
             $r->session()->put('query_id', $id);
 
         }
+        return redirect('/account');
     }
     function reg()
     {
