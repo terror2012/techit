@@ -111,14 +111,7 @@ class ScheduleController extends Controller
 
             //GetQueryID
             $q = queries::all()->sortByDesc('id')->first();
-            if($q !== null)
-            {
-                $id = $q->id +1;
-            }
-            else
-            {
-                $id = '1';
-            }
+            $id = $q->id;
 
 
             //ScheduleData
