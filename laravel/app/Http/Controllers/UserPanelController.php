@@ -44,7 +44,7 @@ class UserPanelController extends Controller
         $userData['zip'] = $uD->zip;
         $userData['street'] = $uD->address;
 
-        $query = queries::where('email', '=', Auth::user()->email)->get();
+        $query = queries::where('user_id', '=', Auth::user()->id)->get();
         $queryData = [];
         foreach ($query as $q) {
             $queryData[$q->id]['id'] = $q->id;

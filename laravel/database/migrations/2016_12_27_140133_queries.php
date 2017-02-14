@@ -16,6 +16,7 @@ class Queries extends Migration
         Schema::create('queries', function(Blueprint $t){
             $t->increments('id');
             $t->string('name');
+            $t->string('user_id')->nullable();
             $t->string('email');
             $t->integer('phone');
             $t->longText('message');

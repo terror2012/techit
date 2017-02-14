@@ -98,6 +98,7 @@ class ScheduleController extends Controller
             $s->name = $fname . ' ' . $lname;
             $s->email = $email;
             $s->phone = $number;
+            $s->user_id = Auth::user()->id;
             $s->message = $message;
             $s->contact = $contact;
             $s->city = $city;
