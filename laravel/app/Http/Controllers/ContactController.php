@@ -34,6 +34,8 @@ class ContactController extends Controller
         {
             $mail->to($gen->email)
                 ->send(new ContactMail(Input::get('email'), Input::get('name'), Input::get('subject'), Input::get('body')));
+            flash('Message Sent Successful. We will reply to your email within 24h. Thanks for contacting us', 'success');
         }
+        return redirect('/contact');
     }
 }
