@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Eloquent\general_settings;
 use App\Eloquent\queries;
 use App\Eloquent\query_data;
+use App\Http\Requests\SchedulePage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -73,7 +74,7 @@ class ScheduleController extends Controller
         return view('schedule')->with('days', $dayLoop)->with('timeExist', null)->with('gen', $genData);
 
     }
-    public function query(Request $r)
+    public function query(SchedulePage $r)
     {
         if(Input::has('firstName') && Input::has('lastName') && Input::has('email') && Input::has('phoneNumber')&&Input::has('city')&&Input::has('zip') && Input::has('street')&&Input::has('client')&&Input::has('state')&&Input::has('date')&&Input::has('time')&&Input::has('contact')&&Input::has('message'))
         {
