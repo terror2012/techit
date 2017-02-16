@@ -33,37 +33,80 @@
         
         <h2 class="text-center"><i>Open for Business {{$general['days']}} {{$general['hours']}}</i></h2>
                 @endif
-              <!--  <h3>Send us a Message</h3>
-                <form name="sentMessage" id="contactForm" novalidate>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Full Name:</label>
-                            <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
-                            <p class="help-block"></p>
-                        </div>
+
+                    <div class="container">
+
+                        <form class="well form-horizontal" action="{{'/contact'}}" method="post"  id="contact_form">
+                            {{csrf_field()}}
+                            <fieldset>
+
+                                <!-- Form Name -->
+                                <legend>Contact Us Today!</legend>
+
+                                <!-- Text input-->
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Name</label>
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            <input  name="name" placeholder="Name" class="form-control"  type="text">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">E-Mail</label>
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                            <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Subject</label>
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                            <input  name="subject" placeholder="Subject" class="form-control"  type="text">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- Text input-->
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Message</label>
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                            <textarea class="form-control" name="message" placeholder="Message"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Success message -->
+                                <!-- Button -->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label"></label>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
                     </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Phone Number:</label>
-                            <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
-                        </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Email Address:</label>
-                            <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
-                        </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Message:</label>
-                            <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
-                            
-                             <button type="submit" class="btn btn-primary">Send Message</button>
-                        </div>
-                    </div>
-                    <div id="success"></div> -->
-                    <!-- For success/fail messages -->
+            </div><!-- /.container -->
+
+
                     <div class="row">
                         <div class="col-md-5"></div>
                         <div class="col-md-7 padding">

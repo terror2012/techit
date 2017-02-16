@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Eloquent\general_settings;
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailer;
+use Illuminate\Support\Facades\Input;
 
 class ContactController extends Controller
 {
@@ -23,5 +26,14 @@ class ContactController extends Controller
             return view('contact')->with('general', $generalData);
         }
         return view('contact');
+    }
+    public function contact(Mailer $mail)
+    {
+        $gen = general_settings::find('1')->first();
+        if(Input::has('name')&&Input::has('email')&&Input::has('subject')&&Input::has('message'))
+        {
+            $mail->to($gen->email)
+                ->send(new ContactMail(Input::get('email'), Input::get('name'), Input::get('subject'), Input::get('body')));
+        }
     }
 }

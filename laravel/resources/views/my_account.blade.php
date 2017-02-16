@@ -179,7 +179,7 @@
                 <td>{{$q['paid']}}</td>
 
                 <td><a href="#" class="btn-sm btn-primary text-center"><strong>Pay Bill</strong></a>
-                    <a href="#" class="btn-sm btn-danger text-center"><strong>Cancel Appointment</strong></a>
+                    <a href="#" class="btn-sm btn-danger text-center"><strong>Cancel</strong></a>
 
                 </td>
                 <td></td>

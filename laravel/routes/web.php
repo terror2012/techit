@@ -28,6 +28,7 @@ Route::group(['middleware' => 'sys_off'], function(){
         Route::get('/howto', 'HowToController@index');
         Route::post('/howto/submit', 'HowToController@submit');
         Route::get('/contact', 'ContactController@index');
+        Route::post('/contact','ContactController@contact');
         Route::get('/account', 'UserPanelController@index')->name('account');
         Route::get('/edit_account_details', 'UserPanelController@edit_user_info');
         Route::get('/how_to_ajax/{id}', 'HowToController@ajaxRespond');
