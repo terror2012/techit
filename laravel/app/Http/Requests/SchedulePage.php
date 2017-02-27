@@ -29,7 +29,7 @@ class SchedulePage extends FormRequest
             'email' => 'required|email',
             'number' => 'required|numeric|max:12',
             'city' => 'required',
-            'zip' => 'required|number|max:5',
+            'zip' => 'required|numeric|max:5',
             'street' => 'required|max:25',
             'message' => 'required|max:200',
         ];

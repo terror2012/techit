@@ -14,5 +14,7 @@ io.on('connection', function(socket){
 redisClient.subscribe('business');
 console.log("Redis server running");
 redisClient.on("message", function(channel, message) {
+    console.log(channel);
+    console.log(message);
             io.emit(channel, message);
 });

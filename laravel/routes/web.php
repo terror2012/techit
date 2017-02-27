@@ -38,9 +38,18 @@ Route::group(['middleware' => 'sys_off'], function(){
         });
         Route::get('/schedule', 'ScheduleController@index');
         Route::post('/schedule/submit', 'ScheduleController@query');
-        Route::get('/schedule_register', 'ScheduleController@reg');
-        Route::get('/schedule_pay_as_guest', 'ScheduleController@PayAsGuest');
+        Route::get('/schedule/getDate', 'ScheduleController@getDataAJAX');
+        Route::get('/schedule/getTime/{date}', 'ScheduleController@getTimeAJAX');
+        Route::get('/schedule/register', 'ScheduleController@regIndex');
+        Route::post('/schedule/register', 'ScheduleController@reg');
+        Route::post('/schedule/reg_complete', 'ScheduleController@reg_complete');
+        Route::post('/schedule/guest_pay', 'ScheduleController@PayAsGuest');
+        Route::post('/checkout', 'ScheduleController@checkout');
         Route::get('/remote_connect', 'RemoteConnectController@index');
+        Route::get('/thanksyou', 'ScheduleController@thankyou');
+        Route::get('/account/invoice/{id}', 'UserPanelController@view_invoice');
+        Route::get('/account/delete_invoice/{id}', 'UserPanelController@delete_invoice');
+        Route::post('/account/checkout/{id}', 'UserPanelController@checkout');
 
         Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
             Route::get('/', 'AdminIndexController@index')->name('admin');

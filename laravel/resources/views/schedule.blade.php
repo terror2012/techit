@@ -29,6 +29,13 @@
             <!-- Form Name -->
             <legend>Schedule An Appointment</legend>
 
+            @if (session()->has('flash_notification.message'))
+                <div class="alert alert-{{ session('flash_notification.level') }}">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                    {!! session('flash_notification.message') !!}
+                </div>
+            @endif
 
             <div class="form-group">
                 <label class="col-md-4 control-label">Client Type</label>
@@ -120,6 +127,7 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                         <input style="color: black;" name="city" placeholder="city" class="form-control"  type="text" value="Las Vegas" disabled>
+                        <input type="hidden" name="city" value="Las Vegas"/>
                     </div>
                 </div>
             </div>
@@ -183,17 +191,17 @@
                                     @for($i = 0; $i < count($days); $i++)
 
                                         @if(in_array($days[$i], $dayExist))
-                                            <option value="{{$days[$i]}}" disabled>{{$days[$i]}}</option>
+                                            <option class="date" id="{{$days[$i]}}" value="{{$days[$i]}}" disabled>{{$days[$i]}}</option>
 
                                         @else
-                                            <option value="{{$days[$i]}}">{{$days[$i]}}</option>
+                                            <option class="date" id="{{$days[$i]}}" value="{{$days[$i]}}">{{$days[$i]}}</option>
 
                                         @endif
                                     @endfor
 
                                 @else
                                     @for($i = 0; $i < count($days); $i++)
-                                        <option value="{{$days[$i]}}">{{$days[$i]}}</option>
+                                        <option class="date" id="{{$days[$i]}}" value="{{$days[$i]}}">{{$days[$i]}}</option>
                                     @endfor
                                 @endif
 
@@ -212,9 +220,9 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                         <select id="time" name="time" class="form-control selectpicker" onchange="Time_for_client()" >
                             <option value="select" >Please select your time</option>
-                            <option value="10:00 AM" @if(!empty($timeExist)) @if(in_array('10:00 AM', $timeExist[$days[0]])) disabled @endif @endif> 10:00 AM </option>
-                            <option value="11:30 AM" @if(!empty($timeExist)) @if(in_array('11:30 AM', $timeExist[$days[0]])) disabled @endif @endif> 11:30 AM </option>
-                            <option value="01:00 PM" @if(!empty($timeExist)) @if(in_array('01:00 PM', $timeExist[$days[0]])) disabled @endif @endif> 01:00 PM </option>
+                            <option class="time" id="10:00 AM" value="10:00 AM"> 10:00 AM </option>
+                            <option class="time" id="11:30 AM" value="11:30 AM"> 11:30 AM </option>
+                            <option class="time" id="01:00 PM" value="01:00 PM"> 01:00 PM </option>
 
 
                         </select>
@@ -233,7 +241,11 @@
                     </div>
                 </div>
             </div>
-
+            {{--<input type="hidden" id="client_inp" name="client"/>
+            <input type="hidden" id="state_inp" name="state"/>
+            <input type="hidden" id="date_inp" name="date"/>
+            <input type="hidden" id="time_inp" name="time"/>
+            <input type="hidden" id="contact_inp" name="contact"/>--}}
             <!-- Success message -->
             <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
 
@@ -251,61 +263,123 @@
                 </div>
             </div>
 
-            <input type="hidden" id="client_inp" name="client"/>
-            <input type="hidden" id="state_inp" name="state"/>
-            <input type="hidden" id="date_inp" name="date"/>
-            <input type="hidden" id="time_inp" name="time"/>
-            <input type="hidden" id="contact_inp" name="contact"/>
+
 
 
         </fieldset>
     </form>
 </div>
 </div><!-- /.container -->
-<script src="{{url('/js/jquery.js')}}"></script>
-{{--<script src="{{url('js/schedule.js')}}"></script>--}}
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
 <script src="{{url('/js/bootstrap.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.7/socket.io.min.js"></script>
 
 <script>
+
+
+    var socket = io('http://techit.dev:3000');
+    socket.on('business', function (date){
+        var currDate = document.getElementById('date').value;
+        getDateN();
+        if(currDate == date)
+         {
+             if($('option[value="' + date + '"]').prop('disabled'))
+             {
+                 document.getElementById('date').value = 'select';
+                 document.getElementById('time').value = 'select';
+             }
+             else
+             {
+                 document.getElementById('date').value = date;
+                getTime(currDate);
+                 var time = document.getElementById('time').value;
+                 console.log(time);
+                 if($('option[value="' + time + '"]').prop('disabled'))
+                 {
+                     document.getElementById('time').value = 'select';
+                 }
+                 else
+                 {
+                     document.getElementById('time').value = time;
+                 }
+             }
+         }
+    });
     function Date_for_client()
     {
         var date = document.getElementById('date').value;
-        $('#date_inp').val(date);
+        /*$('#date_inp').val(date);*/
+        getTime(date);
     }
     function Time_for_client()
     {
         var time = document.getElementById('time').value;
-        $('#time_inp').val(time);
+//        $('#time_inp').val(time);
     }
     function Client_for_client()
     {
         var client = document.getElementById('client').value;
-        $('#client_inp').val(client);
+//        $('#client_inp').val(client);
     }
     function State_for_client()
     {
         var state = document.getElementById('state').value;
-        $('#state_inp').val(state);
+//        $('#state_inp').val(state);
     }
     function Contact_for_client()
     {
         var contact = document.getElementById('contact').value;
-        $('#contact_inp').val(contact);
+//        $('#contact_inp').val(contact);
     }
     function submit_and_register()
     {
-        document.getElementById('schedule_form').action = '{{url('/register_and_checkout')}}';
+        document.getElementById('schedule_form').action = '{{url('/schedule/register')}}';
         document.getElementById('schedule_form').submit();
     }
     function submit_checkout()
     {
-        document.getElementById('schedule_form').action = '{{url('/submit_and_checkout')}}';
+        document.getElementById('schedule_form').action = '{{url('/schedule/guest_pay')}}';
         document.getElementById('schedule_form').submit();
     }
     function submit_and_redirect()
     {
         document.getElementById('schedule_form').submit();
     }
+    function getDateN()
+    {
+        $("option[class='date']").prop('disabled', false);
+        $.ajax({
+            url: "{{url('/schedule/getDate')}}",
+            type: "GET",
+            async: false,
+            success: function (data) {
+                var dates = JSON.parse(data);
+                $.each(dates, function(key, value){
+                    $("option[value='" + value +"']").prop('disabled', true);
+                })
+            }
+        });
+    }
+
+    function getTime(date)
+    {
+        $("option[class='time']").prop('disabled', false);
+        $.ajax({
+            url: "{{url('/schedule/getTime')}}" + "/" + date,
+            type: "GET",
+            async: false,
+            success: function (data) {
+            var times = JSON.parse(data);
+            $.each(times, function(key, value){
+                $("option[value='" + value + "']").prop('disabled', true);
+            })
+            }
+        });
+    }
+
 </script>
 
 </body>

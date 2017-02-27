@@ -63,7 +63,7 @@
             <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <h1><Strong>John Doe</Strong></h1>
+                    <h1><Strong>{{$user['f_name'] . ' ' . $user['l_name']}}</Strong></h1>
                     
                          <form method="post" action="{{url('/edit_account_details')}}">
                              {{csrf_field()}}
@@ -137,7 +137,7 @@
 
   <div class="form-group form-zipCode">
     <label for="InputPhoneNumber">Zip Code</label>
-    <input type="number" class="form-control" id="ZipCode"  placeholder="Enter The Zip Code Of The Service Location" @if(!empty($user['zip'])) value="{{$user['zip']}}" @endif>
+    <input type="text" class="form-control" id="ZipCode"  placeholder="Enter The Zip Code Of The Service Location" @if(!empty($user['zip'])) value="{{$user['zip']}}" @endif>
     
   </div>
                        <!-- Street Adress -->
@@ -157,12 +157,11 @@
         
      
       <th>Invoice #</th>
-        <th>Value</th>
+        <th>To Pay</th>
       <th>Date</th>
       <th>Time</th>
     <th>Issue</th>
-        <th>Prefered Contact Method</th>
-        <th>Payment Status</th>
+        <th>Contact Method</th>
     <th>Actions</th>
     </tr>
   </thead>
@@ -171,18 +170,18 @@
         @foreach($query as $q)
             <tr>
                 <th>{{$q['id']}}</th>
-                <td>{{$q['value']}}</td>
+                <td>${{$q['value']}}</td>
                 <td>{{$q['date']}}</td>
                 <td>{{$q['time']}}</td>
                 <td><p>{{$q['message']}}</p></td>
                 <td>{{$q['contact']}}</td>
-                <td>{{$q['paid']}}</td>
 
-                <td><a href="#" class="btn-sm btn-primary text-center"><strong>Pay Bill</strong></a>
-                    <a href="#" class="btn-sm btn-danger text-center"><strong>Cancel</strong></a>
-
-                </td>
-                <td></td>
+                @if($q['paid'] == false)
+                    <td><a href="{{url('/account/invoice/' . $q['id'])}}" class="btn-sm btn-primary text-center"><strong>Pay Bill</strong></a> <br>
+                        <a href="{{url('/account/delete_invoice/' . $q['id'])}}" class="btn-sm btn-danger text-center"><strong>Cancel</strong></a></td>
+                        @else
+                    <td>Paid </td>
+                        @endif
             </tr>
             @endforeach
         @endif
