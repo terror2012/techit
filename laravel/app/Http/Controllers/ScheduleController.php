@@ -286,7 +286,7 @@ class ScheduleController extends Controller
             return redirect('/');
         }
     }
-    function PayAsGuest(SchedulePage $r)
+    function PayAsGuest(Sh $r)
     {
         if(Input::has('firstName') && Input::has('lastName') && Input::has('email') && Input::has('phoneNumber')&&Input::has('city')&&Input::has('zip') && Input::has('street')&&Input::has('client')&&Input::has('state')&&Input::has('date')&&Input::has('time')&&Input::has('contact')&&Input::has('message'))
         {

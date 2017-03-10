@@ -26,7 +26,7 @@
             <div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                @if(!isset($type))
+                @if(isset($type))
                     @if($type == 'query')
                         <h1>Thank you for submitting your query. The query number #{{$id}} has been registered. And you will be contacted soon with more details.</h1>
                     @else
