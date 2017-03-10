@@ -191,6 +191,7 @@ class UserPanelController extends Controller
 
 
                 $payment = new payment_history();
+                $payment->user_id = Auth::user()->id;
                 $payment->query_id_data = $id;
                 $payment->email = Auth::user()->email;
                 $payment->paid_amount = '15';
