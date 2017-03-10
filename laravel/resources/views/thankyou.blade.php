@@ -26,7 +26,13 @@
             <div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-                <h1>Thank you for submitting your query. The query number #{{$id}} has been registered. And you will be contacted soon with more details.</h1>
+                @if(!isset($type))
+                    @if($type == 'query')
+                        <h1>Thank you for submitting your query. The query number #{{$id}} has been registered. And you will be contacted soon with more details.</h1>
+                    @else
+                        <h1>Thank you for submitting your Remote Connect Queue. The remote number #{{$id}} has been registered. And you will be contacted soon with more details.</h1>
+                    @endif
+                    @endif
             </div>
     </div>
 

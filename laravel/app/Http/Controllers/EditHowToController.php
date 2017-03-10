@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Eloquent\how_section;
 use App\Eloquent\howto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,5 +95,87 @@ class EditHowToController extends Controller
     private function uploadImage(Request $r, $name, $file)
     {
         Image::make($file)->resize('256, 256')->save('img/'.$name.'.jpg');
+    }
+
+    function section()
+    {
+        $sections = how_section::all();
+        $sectionArray = [];
+        foreach($sections as $s)
+        {
+            $sectionArray[$s->id]['id'] = $s->id;
+            $sectionArray[$s->id]['name'] = $s->name;
+            $sectionArray[$s->id]['count'] = $s->HTcount;
+            $sectionArray[$s->id]['visible'] = $s->visible;
+            $sectionArray[$s->id]['created'] = $s->created_at->diffForHumans();
+        }
+        return view('admin/how_to_section')->with('section', $sectionArray);
+    }
+    function add_section()
+    {
+        $mode = 'add';
+        return view('admin.howto_section_add')->with('mode', $mode);
+    }
+    function add_handle(Request $r)
+    {
+        if($r->has('name'))
+        {
+            $name = $r->get('name');
+            $section = new how_section();
+            $section->name = $name;
+            $section->save();
+            flash('Section ' . $name . ' added successful', 'success');
+            return redirect('/admin/how_to');
+        }
+        return redirect('/admin_how_to/section');
+    }
+    function activate_section($id)
+    {
+        $section = how_section::where('id', '=', $id)->first();
+        $section->visible = '1';
+        $section->save();
+        flash('Section #' . $section->id . ' changed to visible', 'success');
+        return redirect('/admin/how_to/section');
+    }
+    function deactivate_section($id)
+    {
+        $section = how_section::where('id', '=', $id)->first();
+        $section->visible = '0';
+        $section->save();
+        flash('Section #' . $section->id . ' changed to invisible', 'success');
+        return redirect('/admin/how_to/section');
+    }
+    function edit_section($id)
+    {
+        $section = how_section::where('id', '=', $id)->first();
+        $sectionArray['id'] = $section->id;
+        $sectionArray['name'] = $section->name;
+        $mode = 'edit';
+        return view('admin.howto_section_add')->with('mode', $mode)->with('s', $sectionArray);
+    }
+    function edit_handle($id, Request $r)
+    {
+        if($r->has('name'))
+        {
+            $section = how_section::where('id', '=', $id)->first();
+            $section->name = $r->get('name');
+            $section->save();
+            flash('Section #' . $section->id . ' saved successful', 'success');
+            return redirect('/admin/how_to/section');
+        }
+        return redirect('/admin/how_to/section');
+    }
+    function delete_section($id)
+    {
+        $section = how_section::where('id', '=', $id)->first();
+        $section->delete();
+
+        $howto = howto::where('section_id', '=', $id)->get();
+        foreach($howto as $h)
+        {
+            $h->delete();
+        }
+        flash('Section #' . $id . ' and all how_to videos related to this section were deleted', 'danger');
+        return redirect('/admin/how_to/section');
     }
 }

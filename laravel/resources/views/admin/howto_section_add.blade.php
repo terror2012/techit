@@ -75,22 +75,15 @@
                     <h1><span class="glyphicon glyphicon-pencil"></span> Add Section</h1>
                 </div>
 
-                <form action="{{url('/admin/add_section/')}}" method="Post">
+                <form action="@if($mode == 'add') {{url('/admin/how_to/section/add/')}} @else {{url('/admin/how_to/edit_section/' . $s['id'])}} @endif" method="Post">
                     {{csrf_field()}}
                     <div class="col-md-10" id="tourpackages-carousel">
                         <!-- Title -->
                         <h2><strong>Section Name</strong></h2>
                         <div class="form-group">
-                            <label for="usr">Enter The Section Name</label>
-                            <input type="text" class="form-control" name="name" id="usr" value="">
+                            <label for="usr">Enter The How To Section Name</label>
+                            <input type="text" class="form-control" name="name" id="usr" value="@if(isset($s['name'])) {{$s['name']}} @endif">
 
-
-                        </div>
-                        <h2><strong>Services for this section</strong></h2>
-
-                        <div class="form-group">
-                            <label for="services">Enter the IDs of the services, separated by ","</label>
-                            <input type="text" class="form-control" name="services" id="services" value=""/>
                         </div>
 
                         <!-- Description End -->

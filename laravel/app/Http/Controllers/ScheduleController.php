@@ -6,6 +6,7 @@ use App\Eloquent\general_settings;
 use App\Eloquent\payment_history;
 use App\Eloquent\queries;
 use App\Eloquent\query_data;
+use App\Eloquent\Remote_Connect;
 use App\Eloquent\user_info;
 use App\Http\Requests\SchedulePage;
 use App\Eloquent\User;
@@ -77,7 +78,7 @@ class ScheduleController extends Controller
         return view('schedule')->with('days', $dayLoop)->with('timeExist', null)->with('gen', $genData);
 
     }
-    public function query(Request $r)
+    public function query(SchedulePage $r)
     {
         if(Input::has('firstName') && Input::has('lastName') && Input::has('email') && Input::has('phoneNumber')&&Input::has('city')&&Input::has('zip') && Input::has('street')&&Input::has('client')&&Input::has('state')&&Input::has('date')&&Input::has('time')&&Input::has('contact')&&Input::has('message'))
         {
@@ -155,7 +156,7 @@ class ScheduleController extends Controller
         return redirect('/');
 
     }
-    function reg(Request $r)
+    function reg(SchedulePage $r)
     {
         if(Input::has('firstName') && Input::has('lastName') && Input::has('email') && Input::has('phoneNumber')&&Input::has('city')&&Input::has('zip') && Input::has('street')&&Input::has('client')&&Input::has('state')&&Input::has('date')&&Input::has('time')&&Input::has('contact')&&Input::has('message'))
         {
@@ -273,14 +274,19 @@ class ScheduleController extends Controller
         if($r->session()->has('thank'))
         {
             $id = queries::all()->sortByDesc('id')->first()->id;
-            return view('thankyou')->with('id', $id);
+            return view('thankyou')->with('id', $id)->with('type', 'query');
+        }
+        elseif($r->session()->has('thankR'))
+        {
+            $id = Remote_Connect::all()->sortByDesc('id')->first()->id;
+            return view('thankyou')->with('id', $id)->with('type', 'remote');
         }
         else
         {
             return redirect('/');
         }
     }
-    function PayAsGuest(Request $r)
+    function PayAsGuest(SchedulePage $r)
     {
         if(Input::has('firstName') && Input::has('lastName') && Input::has('email') && Input::has('phoneNumber')&&Input::has('city')&&Input::has('zip') && Input::has('street')&&Input::has('client')&&Input::has('state')&&Input::has('date')&&Input::has('time')&&Input::has('contact')&&Input::has('message'))
         {
@@ -341,7 +347,7 @@ class ScheduleController extends Controller
             $user->timestamps;
             $user->save();
 
-            $user_info = new user_info(); //TODO: USER INFO REGISTERING!
+            $user_info = new user_info();
             $user_info->first_name = $formData['firstName'];
             $user_info->last_name = $formData['lastName'];
             $user_info->email = $formData['email'];

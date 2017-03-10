@@ -9,13 +9,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title class="tittle">Add Section</title>
+    <title>All Payments</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{url('/admin_assets/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{url('/admin_assets/css/simple-sidebar.css')}}" rel="stylesheet">
+
+    <link href="{{url('/css/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,18 +48,21 @@
 
             </li>
             <li class="item">
-                <a href="{{URL::previous()}}"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+                <a href="{{URL::previous()}}"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>
             </li>
+
 
             <hr />
             <li class="item">
-                <a href="{{url('/admin/how_to')}}">HowTo Settings</a>
-
+                <a href="{{url('/admin/invoices')}}">Invoice List</a>
             </li>
             <li class="item">
-                <a href="{{url('/admin/gallery')}}">Gallery Settings</a>
-
+                <a href="{{url('/admin/clients')}}">Clients</a>
             </li>
+            <li class="item">
+                <a href="{{url('/admin/appointments')}}">Total Appointments</a>
+            </li>
+
 
 
 
@@ -72,36 +77,51 @@
             <div class="row">
                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
                 <div class="col-lg-12">
-                    <h1><span class="glyphicon glyphicon-pencil"></span> Add Section</h1>
+                    <h1 class="tittle"><span class="glyphicon glyphicon-user"> All Payments</span></h1>
+                <!-- extra icons -->
+
+                    <table class="table">
+
+                        <!-- /extra icons -->
+                        <thead class="thead-inverse">
+                        <tr>
+
+                            <th>ID</th>
+                            <th>User_ID</th>
+                            <th>Query ID</th>
+                            <th>Email</th>
+                            <th>Amount Paid</th>
+                            <th>Payment date</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if(!empty($payment))
+                            @foreach($payment as $p)
+                                <tr>
+                                    <th scope="row">{{$p['id']}}</th>
+                                    <td>{{$p['user_id']}}</td>
+                                    <td>{{$p['query_id']}}</td>
+                                    <td>{{$p['email']}}</td>
+                                    <td>{{$p['paid']}}</td>
+                                    <td>{{$p['created']}}</td>
+                                </tr>
+                            @endforeach
+                        @endif
+
+                        </tbody>
+                    </table>
+
+
+
+
+
+
+
+
+
                 </div>
-
-                <form action="{{url('/admin/add_section/')}}" method="Post">
-                    {{csrf_field()}}
-                    <div class="col-md-10" id="tourpackages-carousel">
-                        <!-- Title -->
-                        <h2><strong>Section Name</strong></h2>
-                        <div class="form-group">
-                            <label for="usr">Enter The Section Name</label>
-                            <input type="text" class="form-control" name="name" id="usr" value="">
-
-
-                        </div>
-                        <h2><strong>Services for this section</strong></h2>
-
-                        <div class="form-group">
-                            <label for="services">Enter the IDs of the services, separated by ","</label>
-                            <input type="text" class="form-control" name="services" id="services" value=""/>
-                        </div>
-
-                        <!-- Description End -->
-
-                        <p><button type="submit" class="btn btn-info btn-lg">Submit</button></p>
-                    </div><!-- End row -->
-                </form>
-            </div><!-- End container -->
-
-
-
+            </div>
         </div>
     </div>
     <!-- /#page-content-wrapper -->

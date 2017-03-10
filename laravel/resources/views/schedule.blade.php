@@ -280,7 +280,7 @@
 <script>
 
 
-    var socket = io('http://techit.dev:3000');
+    var socket = io('{{url('/')}}:3000');
     socket.on('business', function (date){
         var currDate = document.getElementById('date').value;
         getDateN();

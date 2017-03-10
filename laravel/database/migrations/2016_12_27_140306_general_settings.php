@@ -25,6 +25,7 @@ class GeneralSettings extends Migration
             $t->string('days')->default('Mon-Sat');
             $t->string('hours')->default('10AM-3PM');
             $t->integer('email_on_upgrade')->default('1');
+            $t->integer('remoteStatus')->default('1');
             //Website mode
             $t->integer('offline_mode')->default('0'); //Sets website to offline.
 

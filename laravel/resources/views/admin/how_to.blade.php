@@ -53,6 +53,9 @@
                 <a href="{{url('/admin/how_to/add')}}"><span class="glyphicon glyphicon-pencil"> Add HowTo</span></a>
                 
                 </li>
+                <li class="item">
+                    <a href="{{url('/admin/how_to/section')}}"><span class="glyphicon glyphicon-pencil">Manage How To Sections</span></a>
+                </li>
                 <hr />
                 <li class="item">
                     <a href="{{url('/admin/how_to')}}">HowTo Settings</a>

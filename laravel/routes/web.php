@@ -45,7 +45,15 @@ Route::group(['middleware' => 'sys_off'], function(){
         Route::post('/schedule/reg_complete', 'ScheduleController@reg_complete');
         Route::post('/schedule/guest_pay', 'ScheduleController@PayAsGuest');
         Route::post('/checkout', 'ScheduleController@checkout');
-        Route::get('/remote_connect', 'RemoteConnectController@index');
+
+        Route::group(['middleware' => 'remote'], function(){
+            Route::get('/remote_connect', 'RemoteConnectController@index');
+            Route::post('/remote_connect', 'RemoteConnectController@remote');
+            Route::post('/remote_pay', 'RemoteConnectController@checkout');
+            Route::get('/remote_pay', 'RemoteConnectController@payment');
+        });
+
+
         Route::get('/thanksyou', 'ScheduleController@thankyou');
         Route::get('/account/invoice/{id}', 'UserPanelController@view_invoice');
         Route::get('/account/delete_invoice/{id}', 'UserPanelController@delete_invoice');
@@ -115,6 +123,16 @@ Route::group(['middleware' => 'sys_off'], function(){
             Route::post('/gallery/scheduleChange', 'EditGalleryController@scheduleChange');
             Route::post('/gallery/serviceChange', 'EditGalleryController@serviceChange');
             /*EndGalleryRoutes*/
+            Route::get('/payments', 'AdminPaymentsController@index');
+            Route::get('/how_to/section', 'EditHowToController@section');
+            Route::get('/how_to/section/add', 'EditHowToController@add_section');
+            Route::post('/how_to/section/add', 'EditHowToController@add_handle');
+            Route::get('/how_to/activate/{id}', 'EditHowToController@activate_section');
+            Route::get('/how_to/deactivate/{id}', 'EditHowToController@deactivate_section');
+            Route::get('/how_to/edit_section/{id}', 'EditHowToController@edit_section');
+            Route::post('/how_to/edit_section/{id}', 'EditHowToController@edit_handle');
+            Route::get('/how_to/delete_section/{id}', 'EditHowToController@delete_section');
+
 
         });
     });

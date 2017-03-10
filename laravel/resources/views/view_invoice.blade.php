@@ -85,7 +85,6 @@
                                     data-description="{{$formData['description']}}"
                                     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                     data-locale="auto">
-                                Stripe.setPublishableKey('{{$formData['publickey']}}');
                             </script>
                         </form>
 

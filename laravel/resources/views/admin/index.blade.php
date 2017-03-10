@@ -55,6 +55,9 @@
                 <li class="item">
                     <a href="{{url('/admin/appointments')}}">Total appointments</a>
                 </li>
+                <li class="item">
+                    <a href="{{url('/admin/payments')}}">All payments</a>
+                </li>
                 
                 
                 <hr />

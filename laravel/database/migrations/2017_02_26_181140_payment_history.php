@@ -17,7 +17,7 @@ class PaymentHistory extends Migration
      {
         $t->increments('id');
         $t->string('user_id')->default('guest');
-        $t->string('query_id_data');
+        $t->string('query_id_data')->nullable();
         $t->string('email');
         $t->string('paid_amount');
         $t->timestamps();

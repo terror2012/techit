@@ -6,7 +6,7 @@ const redisClient = redis.createClient();
 
 
 server.listen(3000);
-
+console.log(server.address());
 io.on('connection', function(socket){
     console.log('a user connected');
     });

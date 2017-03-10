@@ -48,10 +48,10 @@
 
             </li>
             <li class="item">
-                <a href="{{url('/admin/service')}}"><span class="glyphicon glyphicon-chevron-left"></span>Manage Services</a>
+                <a href="{{url('/admin/how_to')}}"><span class="glyphicon glyphicon-chevron-left"></span>Manage HowTo</a>
             </li>
             <li class="item">
-                <a href="{{url('/admin/add_section')}}"><span class="glyphicon glyphicon-pencil"></span>Add Section</a>
+                <a href="{{url('/admin/how_to/section/add')}}"><span class="glyphicon glyphicon-pencil"></span>Add Section</a>
             </li>
 
             <hr />
@@ -82,7 +82,7 @@
             <div class="row">
                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
                 <div class="col-lg-12">
-                    <h1 class="tittle"><span class="glyphicon glyphicon-calendar">Sections</span></h1>
+                    <h1 class="tittle"><span class="glyphicon glyphicon-calendar">How To Sections</span></h1>
 
 
                     @if (session()->has('flash_notification.message'))
@@ -101,25 +101,27 @@
 
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Service Count</th>
+                            <th>HowTo Count</th>
                             <th>Visible</th>
+                            <th>Created At</th>
                             <th>Actions</th>
 
                         </tr>
                         </thead>
                         <tbody>
 
-                           @if(!empty($section))
-                               @foreach($section as $s)
-                                   <tr>
+                        @if(!empty($section))
+                            @foreach($section as $s)
+                                <tr>
                                     <th scope="row">{{$s['id']}}</th>
                                     <td>{{$s['name']}}</td>
                                     <td>{{$s['count']}}</td>
                                     <td>{{$s['visible']}}</td>
-                                    <td><a href="{{url('/admin/edit_section/'.$s['id'])}}"><span class="fa fa-pencil">Edit Section</span></a>      @if($s['visible'] == '0') <a href="{{url('/admin/activate/'.$s['id'])}}"><span class="fa fa-eye">Activate Section</span></a> @else <a href="{{url('/admin/deactivate/'.$s['id'])}}"><span class="fa fa-eye-slash">Deactivate Section</span></a> @endif <a href="{{url('/admin/delete_section/'.$s['id'])}}"><span class="fa fa-trash">Delete Section</span></a></td>
-                                   </tr>
-                               @endforeach
-                               @endif
+                                    <td>{{$s['created']}}</td>
+                                    <td><a href="{{url('/admin/how_to/edit_section/'.$s['id'])}}"><span class="fa fa-pencil">Edit Section</span></a>      @if($s['visible'] == '0') <a href="{{url('/admin/how_to/activate/'.$s['id'])}}"><span class="fa fa-eye">Activate Section</span></a> @else <a href="{{url('/admin/how_to/deactivate/'.$s['id'])}}"><span class="fa fa-eye-slash">Deactivate Section</span></a> @endif <a href="{{url('/admin/how_to/delete_section/'.$s['id'])}}"><span class="fa fa-trash">Delete Section</span></a></td>
+                                </tr>
+                            @endforeach
+                        @endif
 
 
                         </tbody>
