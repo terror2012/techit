@@ -132,6 +132,9 @@ Route::group(['middleware' => 'sys_off'], function(){
             Route::get('/how_to/edit_section/{id}', 'EditHowToController@edit_section');
             Route::post('/how_to/edit_section/{id}', 'EditHowToController@edit_handle');
             Route::get('/how_to/delete_section/{id}', 'EditHowToController@delete_section');
+            Route::get('/remote/on', 'RemoteConnectController@remoteOn');
+            Route::get('/remote/off', 'RemoteConnectController@remoteOff');
+            Route::get('/remote/switch/{id}', 'RemoteConnectController@changeRemote');
 
 
         });

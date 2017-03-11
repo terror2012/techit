@@ -58,6 +58,12 @@
                 <li class="item">
                     <a href="{{url('/admin/payments')}}">All payments</a>
                 </li>
+                <li class="item">
+                    <a href="{{url('/admin/remote/on')}}">Active Remote Q</a>
+                </li>
+                <li class="item">
+                    <a href="{{url('/admin/remote/off')}}">Solved Remote Q</a>
+                </li>
                 
                 
                 <hr />

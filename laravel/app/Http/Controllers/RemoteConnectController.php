@@ -104,4 +104,62 @@ class RemoteConnectController extends Controller
         $r->session()->reflash();
         return redirect('/remote_pay');
     }
+    function remoteOn()
+    {
+        $remoteArray = [];
+        $remote = Remote_Connect::where('status', '=', '1')->get();
+        foreach($remote as $r)
+        {
+            $remoteArray[$r->id]['id'] = $r->id;
+            $remoteArray[$r->id]['name'] = $r->firstName . ' ' . $r->lastName;
+            $remoteArray[$r->id]['email'] = $r->email;
+            $remoteArray[$r->id]['phone'] = $r->phone;
+            $remoteArray[$r->id]['skype'] = $r->skype;
+            $remoteArray[$r->id]['paid'] = $r->paid;
+            $remoteArray[$r->id]['email'] = $r->email;
+            if($r->isRegistered == '1')
+            {
+                $remoteArray[$r->id]['user_id'] = $r->user_id;
+            }
+            else
+            {
+                $remoteArray[$r->id]['user_id'] = 'guest';
+            }
+            $remoteArray[$r->id]['created'] = $r->created_at->diffForHumans();
+        }
+        return view('admin.remote_connect_active')->with('remote', $remoteArray);
+    }
+    function remoteOff()
+    {
+        $remoteArray = [];
+        $remote = Remote_Connect::where('status', '=', '0')->get();
+        foreach($remote as $r)
+        {
+            $remoteArray[$r->id]['id'] = $r->id;
+            $remoteArray[$r->id]['name'] = $r->firstName . ' ' . $r->lastName;
+            $remoteArray[$r->id]['email'] = $r->email;
+            $remoteArray[$r->id]['phone'] = $r->phone;
+            $remoteArray[$r->id]['skype'] = $r->skype;
+            $remoteArray[$r->id]['paid'] = $r->paid;
+            $remoteArray[$r->id]['email'] = $r->email;
+            if($r->isRegistered == '1')
+            {
+                $remoteArray[$r->id]['user_id'] = $r->user_id;
+            }
+            else
+            {
+                $remoteArray[$r->id]['user_id'] = 'guest';
+            }
+            $remoteArray[$r->id]['created'] = $r->created_at->diffForHumans();
+        }
+        return view('admin.remote_connect_solved')->with('remote', $remoteArray);
+    }
+    function changeRemote($id)
+    {
+        $remote = Remote_Connect::where('id', '=', $id)->first();
+        $remote->status = '0';
+        $remote->save();
+        flash('Remote Connect Queue #' . $remote->id . ' switched to solved.', 'success');
+        return view('admin.remote_connect_active');
+    }
 }

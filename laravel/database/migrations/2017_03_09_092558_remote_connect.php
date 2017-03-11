@@ -24,6 +24,7 @@ class RemoteConnect extends Migration
             $r->string('paid')->default('0');
             $r->integer('isRegistered')->default('0');
             $r->string('user_id')->nullable();
+            $r->integer('status')->default('1'); //1->active, 0->archived.
             $r->timestamps();
         });
     }
