@@ -43,7 +43,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input  name="email" placeholder="Email" class="form-control"  type="text" value="{{$email}}" disabled>
+                        <input style="color: black;" name="email" placeholder="Email" class="form-control"  type="text" value="{{$email}}" disabled>
                     </div>
                 </div>
             </div>
