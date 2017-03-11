@@ -78,7 +78,7 @@ class ScheduleController extends Controller
         return view('schedule')->with('days', $dayLoop)->with('timeExist', null)->with('gen', $genData);
 
     }
-    public function query(SchedulePage $r)
+    public function query(Request $r)
     {
         if(Input::has('firstName') && Input::has('lastName') && Input::has('email') && Input::has('phoneNumber')&&Input::has('city')&&Input::has('zip') && Input::has('street')&&Input::has('client')&&Input::has('state')&&Input::has('date')&&Input::has('time')&&Input::has('contact')&&Input::has('message'))
         {
@@ -156,7 +156,7 @@ class ScheduleController extends Controller
         return redirect('/');
 
     }
-    function reg(SchedulePage $r)
+    function reg(Request $r)
     {
         if(Input::has('firstName') && Input::has('lastName') && Input::has('email') && Input::has('phoneNumber')&&Input::has('city')&&Input::has('zip') && Input::has('street')&&Input::has('client')&&Input::has('state')&&Input::has('date')&&Input::has('time')&&Input::has('contact')&&Input::has('message'))
         {
@@ -286,7 +286,7 @@ class ScheduleController extends Controller
             return redirect('/');
         }
     }
-    function PayAsGuest(Sh $r)
+    function PayAsGuest(Request $r)
     {
         if(Input::has('firstName') && Input::has('lastName') && Input::has('email') && Input::has('phoneNumber')&&Input::has('city')&&Input::has('zip') && Input::has('street')&&Input::has('client')&&Input::has('state')&&Input::has('date')&&Input::has('time')&&Input::has('contact')&&Input::has('message'))
         {
