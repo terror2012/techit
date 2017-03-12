@@ -11,13 +11,14 @@
 
 
 @include('layouts/navbar')
-    
- <div class="container padding text-center" style="@if(!empty($general['contact_img']))background-image: url('{{url($general['contact_img'])}}') @endif">
-     <div class="row">
-        <div class="col-md-6">
-        <h1>Contact</h1>
-            <h2>@if(!empty($general['contact_capt'])){{$general['contact_capt']}} @endif</h2>
-        </div>
+
+         <header><div class="jumbotron jumbotron-fluid jumbotron-schedule" style="@if(!empty($general['contact_img']))background-image: url('{{url($general['contact_img'])}}') @endif">
+                 <div class="container">
+                     <h1>Contact Section</h1>
+                     <h2>@if(!empty($general['contact_capt'])){{$general['contact_capt']}} @endif</h2>
+
+                 </div>
+             </div></header>
         
        
     <hr />

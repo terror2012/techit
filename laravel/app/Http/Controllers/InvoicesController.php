@@ -94,7 +94,7 @@ class InvoicesController extends Controller
         $history->address = $invoice->address;
         $history->paid = $invoice->paid;
         $history->status = $invoice->status;
-        $history->invoice_sent = $invoice->invoice_sent;
+        $history->invoice_sent = $invoice->invoicea_sent;
         $history->reminders = $invoice->reminders;
         $history->date = $qD->date;
         $history->time = $qD->time;
