@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Eloquent\inv_history;
 use App\Eloquent\invoices;
+use App\Eloquent\query_data;
 use App\Mail\InvoiceMessage;
 use App\Mail\ReminderMessage;
 use Carbon\Carbon;
@@ -80,6 +81,8 @@ class InvoicesController extends Controller
 
         $invoice = invoices::find($id)->first();
 
+        $qD = query_data::where('invoice_id', '=', $id)->first();
+
         $history->name = $invoice->name;
         $history->email = $invoice->email;
         $history->phone  = $invoice->phone;
@@ -90,10 +93,11 @@ class InvoicesController extends Controller
         $history->zip = $invoice->zip;
         $history->address = $invoice->address;
         $history->paid = $invoice->paid;
-        $history->amount = $invoice->amount;
         $history->status = $invoice->status;
         $history->invoice_sent = $invoice->invoice_sent;
         $history->reminders = $invoice->reminders;
+        $history->date = $qD->date;
+        $history->time = $qD->time;
         $history->solved_at = Carbon::now();
 
         $history->save();

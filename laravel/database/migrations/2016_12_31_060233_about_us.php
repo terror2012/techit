@@ -15,8 +15,8 @@ class AboutUs extends Migration
     {
         Schema::create('about_us', function(Blueprint $t){
            $t->increments('id');
-            $t->string('image');
-            $t->longText('about_us');
+            $t->string('image')->nullable();
+            $t->longText('about_us')->nullable();
             $t->timestamps();
         });
     }

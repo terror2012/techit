@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Eloquent\gallery;
 use App\Eloquent\general_settings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
 
@@ -96,7 +97,7 @@ class EditGalleryController extends Controller
         }
         return redirect()->route('gallery');
     }
-    function commentChange()
+    function commentChange() //TODO CHANGE EVERYTHING FROM ABOUT TO SECTION STUFF!
     {
         $gen = general_settings::find('1');
         if(Input::has('commCaption'))
@@ -105,10 +106,10 @@ class EditGalleryController extends Controller
             if(Input::hasFile('comment_add'))
             {
                 $this->uploadImage($num, input::file('comment_add'));
-                $gen->about_img = 'img/'.$num.'.jpg';
+                $gen->comment_img = 'img/'.$num.'.jpg';
             }
 
-            $gen->about_capt = Input::get('commCaption');
+            $gen->comment_capt = Input::get('commCaption');
             $gen->save();
             flash('Comment Page Info changed Successful', 'success');
             return redirect()->route('gallery');
@@ -124,10 +125,10 @@ class EditGalleryController extends Controller
             if(Input::hasFile('contact_add'))
             {
                 $this->uploadImage($num, input::file('contact_add'));
-                $gen->about_img = 'img/'.$num.'.jpg';
+                $gen->contact_img = 'img/'.$num.'.jpg';
             }
 
-            $gen->about_capt = Input::get('contactCaption');
+            $gen->contact_capt = Input::get('contactCaption');
             $gen->save();
             flash('Contact Page Info changed Successful', 'success');
             return redirect()->route('gallery');
@@ -142,10 +143,10 @@ class EditGalleryController extends Controller
             if (Input::hasFile('how_to_add'))
             {
                 $this->uploadImage($num, input::file('how_to_add'));
-                $gen->about_img = 'img/' . $num . '.jpg';
+                $gen->howto_img = 'img/' . $num . '.jpg';
             }
 
-            $gen->about_capt = Input::get('HTcaption');
+            $gen->howto_capt = Input::get('HTcaption');
             $gen->save();
             flash('How To Page Info changed Successful', 'success');
             return redirect()->route('gallery');
@@ -161,11 +162,11 @@ class EditGalleryController extends Controller
             if(Input::hasFile('my_account_add'))
             {
                 $this->uploadImage($num, input::file('my_account_add'));
-                $gen->about_img = 'img/'.$num.'.jpg';
+                $gen->myacc_img = 'img/'.$num.'.jpg';
             }
 
 
-            $gen->about_capt = Input::get('myAccCaption');
+            $gen->myacc_capt = Input::get('myAccCaption');
             $gen->save();
             flash('My Account Page Info changed Successful', 'success');
             return redirect()->route('gallery');
@@ -181,10 +182,10 @@ class EditGalleryController extends Controller
             if(Input::hasFile('schedule_add'))
             {
                 $this->uploadImage($num, input::file('schedule_add'));
-                $gen->about_img = 'img/'.$num.'.jpg';
+                $gen->schedule_img = 'img/'.$num.'.jpg';
             }
 
-            $gen->about_capt = Input::get('scheduleCaption');
+            $gen->schedule_capt = Input::get('scheduleCaption');
             $gen->save();
             flash('Schedule Page Info changed Successful', 'success');
             return redirect()->route('gallery');
@@ -199,11 +200,11 @@ class EditGalleryController extends Controller
             $num = 'Service_Capt_Img';
            if(Input::hasFile('service_add'))
            {
-               $this->uploadImage($num, input::file('about_add'));
-               $gen->about_img = 'img/'.$num.'.jpg';
+               $this->uploadImage($num, input::file('service_add'));
+               $gen->service_img = 'img/'.$num.'.jpg';
            }
 
-            $gen->about_capt = Input::get('aboutCaption');
+            $gen->service_capt = Input::get('serviceCaption');
             $gen->save();
             flash('About Page Info changed Successful', 'success');
             return redirect()->route('gallery');
@@ -212,6 +213,15 @@ class EditGalleryController extends Controller
     }
     private function uploadImage($name, $file)
     {
-        Image::make($file)->resize('256, 256')->save('img/'.$name.'.jpg');
+        if(!File::exists('img/'.$name.'.jpg'))
+        {
+            Image::make($file)->resize('256, 256')->save('img/'.$name.'.jpg');
+        }
+        else
+        {
+            File::delete('img/'.$name.'.jpg');
+            Image::make($file)->resize('256, 256')->save('img/'.$name.'.jpg');
+        }
+
     }
 }

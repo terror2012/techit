@@ -24,9 +24,16 @@ class EditScheduleController extends Controller
         $queryD = query_data::where('query_id', '=', $id)->first();
 
         $inv = invoices::all()->last();
-        $inv_id = $inv->id + 1;
+        if($inv !== null)
+        {
+            $inv_id = $inv->id + 1;
+        }
+        else
+        {
+            $inv_id = 1;
+        }
 
-
+        $queryD->invoice_id = $inv_id;
         //Appointment to Invoice Conversion
         $invoice->name = $query->name;
         $invoice->email = $query->email;
@@ -38,7 +45,14 @@ class EditScheduleController extends Controller
         $invoice->zip = $query->zip;
         $invoice->address = $query->address;
         $invoice->paid = $query->paid;
-        $invoice->amount = $query->amount;
+        if($query->amount !== null)
+        {
+            $invoice->amount = $query->amount;
+        }
+        else
+        {
+            $invoice->amount = '0';
+        }
         $invoice->invoice_sent = '0';
         $invoice->reminders = '0';
         $invoice->created_at = $query->created_at;

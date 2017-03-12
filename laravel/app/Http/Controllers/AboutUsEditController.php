@@ -12,14 +12,22 @@ class AboutUsEditController extends Controller
     function index()
     {
         $ab = about_us::find('1');
-        $abData = [];
-        $abData['image'] = $ab->image;
-        $abData['description'] = $ab->about_us;
-        return view('admin/about_us')->with('about', $abData);
+        if(!empty($ab))
+        {
+            $abData['image'] = $ab->image;
+            $abData['description'] = $ab->about_us;
+            return view('admin/about_us')->with('about', $abData);
+        }
+        return view('admin/about_us');
+
     }
     function edit()
     {
         $about = about_us::find('1');
+        if($about == null)
+        {
+            $about = new about_us();
+        }
         if(Input::has('description'))
         {
             $about->about_us = Input::get('description');

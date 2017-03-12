@@ -110,7 +110,13 @@
           <!-- Drop Zone -->
       <div class="row">
          <!-- Upload Thumbnail End -->
-        
+
+          <h2><strong>Category ID</strong></h2>
+          <div class="form-group">
+              <label for="cat">Insert Category ID</label>
+              <input type="text" name="cat" id="cat" class="form-control"/>
+          </div>
+
     <!-- Video Link -->
   <h2><strong>Video Link</strong></h2>
   <div class="form-group">

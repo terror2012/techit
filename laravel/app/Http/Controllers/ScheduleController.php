@@ -10,6 +10,7 @@ use App\Eloquent\Remote_Connect;
 use App\Eloquent\user_info;
 use App\Http\Requests\SchedulePage;
 use App\Eloquent\User;
+use \Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -78,23 +79,37 @@ class ScheduleController extends Controller
         return view('schedule')->with('days', $dayLoop)->with('timeExist', null)->with('gen', $genData);
 
     }
+
     public function query(Request $r)
     {
-        if(Input::has('firstName') && Input::has('lastName') && Input::has('email') && Input::has('phoneNumber')&&Input::has('city')&&Input::has('zip') && Input::has('street')&&Input::has('client')&&Input::has('state')&&Input::has('date')&&Input::has('time')&&Input::has('contact')&&Input::has('message'))
-        {
-            $fname = Input::get('firstName');
-            $lname = Input::get('lastName');
-            $email = Input::get('email');
-            $number = Input::get('phoneNumber');
-            $city = Input::get('city');
-            $zip = Input::get('zip');
-            $street = Input::get('street');
-            $client = Input::get('client');
-            $state = Input::get('state');
-            $date = Input::get('date');
-            $time = Input::get('time');
-            $contact = Input::get('contact');
-            $message = Input::get('message');
+        $rules = ['firstName' => 'required|alpha|max:15',
+            'lastName'  => 'required|alpha|max:15',
+            'email' => 'required|email',
+            'phoneNumber' => 'required|numeric|max:20',
+            'zip' => 'required|numeric|max:99999',
+            'street' => 'required|max:25',
+            'message' => 'required|max:200',];
+
+            $validator = Validator::make($r->all(), $rules);
+
+            if($validator->fails())
+            {
+                return redirect('/schedule')->withErrors($validator);
+            }
+
+            $fname = $r->get('firstName');
+            $lname = $r->get('lastName');
+            $email = $r->get('email');
+            $number = $r->get('phoneNumber');
+            $city = $r->get('city');
+            $zip = $r->get('zip');
+            $street = $r->get('street');
+            $client = $r->get('client');
+            $state = $r->get('state');
+            $date = $r->get('date');
+            $time = $r->get('time');
+            $contact = $r->get('contact');
+            $message = $r->get('message');
 
             $query_date = query_data::where('date', '=', $date)->count();
             if($query_date > 2)
@@ -151,28 +166,25 @@ class ScheduleController extends Controller
             $redis->publish('business', $date);
 
             return redirect('/account');
-        }
-
-        return redirect('/');
 
     }
     function reg(Request $r)
     {
-        if(Input::has('firstName') && Input::has('lastName') && Input::has('email') && Input::has('phoneNumber')&&Input::has('city')&&Input::has('zip') && Input::has('street')&&Input::has('client')&&Input::has('state')&&Input::has('date')&&Input::has('time')&&Input::has('contact')&&Input::has('message'))
+        if($r->has('firstName') && $r->has('lastName') && $r->has('email') && $r->has('phoneNumber')&&$r->has('city')&&$r->has('zip') && $r->has('street')&&$r->has('client')&&$r->has('state')&&$r->has('date')&&$r->has('time')&&$r->has('contact')&&$r->has('message'))
         {
-            $fname = Input::get('firstName');
-            $lname = Input::get('lastName');
-            $email = Input::get('email');
-            $number = Input::get('phoneNumber');
-            $city = Input::get('city');
-            $zip = Input::get('zip');
-            $street = Input::get('street');
-            $client = Input::get('client');
-            $state = Input::get('state');
-            $date = Input::get('date');
-            $time = Input::get('time');
-            $contact = Input::get('contact');
-            $message = Input::get('message');
+            $fname = $r->get('firstName');
+            $lname = $r->get('lastName');
+            $email = $r->get('email');
+            $number = $r->get('phoneNumber');
+            $city = $r->get('city');
+            $zip = $r->get('zip');
+            $street = $r->get('street');
+            $client = $r->get('client');
+            $state = $r->get('state');
+            $date = $r->get('date');
+            $time = $r->get('time');
+            $contact = $r->get('contact');
+            $message = $r->get('message');
 
             $formDataArray = [];
             $formDataArray['firstName'] = $fname;
@@ -204,10 +216,10 @@ class ScheduleController extends Controller
     }
     function checkout(Request $r)
     {
-        if(Input::has('stripeToken'))
+        if($r->has('stripeToken'))
         {
             $formData = $r->session()->get('formData');
-            $token = Input::get('stripeToken');
+            $token = $r->get('stripeToken');
                 $fname = $formData['firstName'];
             Stripe::setApiKey(env('STRIPE_SECRET'));
             try
@@ -288,21 +300,21 @@ class ScheduleController extends Controller
     }
     function PayAsGuest(Request $r)
     {
-        if(Input::has('firstName') && Input::has('lastName') && Input::has('email') && Input::has('phoneNumber')&&Input::has('city')&&Input::has('zip') && Input::has('street')&&Input::has('client')&&Input::has('state')&&Input::has('date')&&Input::has('time')&&Input::has('contact')&&Input::has('message'))
+        if($r->has('firstName') && $r->has('lastName') && $r->has('email') && $r->has('phoneNumber')&&$r->has('city')&&$r->has('zip') && $r->has('street')&&$r->has('client')&&$r->has('state')&&$r->has('date')&&$r->has('time')&&$r->has('contact')&&$r->has('message'))
         {
-            $fname = Input::get('firstName');
-            $lname = Input::get('lastName');
-            $email = Input::get('email');
-            $number = Input::get('phoneNumber');
-            $city = Input::get('city');
-            $zip = Input::get('zip');
-            $street = Input::get('street');
-            $client = Input::get('client');
-            $state = Input::get('state');
-            $date = Input::get('date');
-            $time = Input::get('time');
-            $contact = Input::get('contact');
-            $message = Input::get('message');
+            $fname = $r->get('firstName');
+            $lname = $r->get('lastName');
+            $email = $r->get('email');
+            $number = $r->get('phoneNumber');
+            $city = $r->get('city');
+            $zip = $r->get('zip');
+            $street = $r->get('street');
+            $client = $r->get('client');
+            $state = $r->get('state');
+            $date = $r->get('date');
+            $time = $r->get('time');
+            $contact = $r->get('contact');
+            $message = $r->get('message');
 
             $formDataArray = [];
             $formDataArray['firstName'] = $fname;
@@ -332,12 +344,12 @@ class ScheduleController extends Controller
     }
     function reg_complete(Request $r)
     {
-        if(Input::has('password'))
+        if($r->has('password'))
         {
 
             $formData = $r->session()->get('formData');
 
-            $pass = Hash::make(Input::get('password'));
+            $pass = Hash::make($r->get('password'));
 
             $user = new User();
 
@@ -360,7 +372,7 @@ class ScheduleController extends Controller
             $user_info->ip_address = $r->ip();
             $user_info->save();
 
-            Auth::attempt(['email' => $formData['email'], 'password' => Input::get('password')]);
+            Auth::attempt(['email' => $formData['email'], 'password' => $r->get('password')]);
 
             $s = new queries();
             $sD = new query_data();

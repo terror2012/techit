@@ -62,6 +62,7 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input  name="firstName" placeholder="First Name" class="form-control"  type="text">
                     </div>
+                    <p>{{$errors->first('firstName')}}</p>
                 </div>
             </div>
 
@@ -74,6 +75,7 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input name="lastName" placeholder="Last Name" class="form-control"  type="text">
                     </div>
+                        <p>{{$errors->first('lastName')}}</p>
                 </div>
             </div>
 
@@ -84,7 +86,9 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                         <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
+
                     </div>
+                    <p>{{$errors->first('email')}}</p>
                 </div>
             </div>
 
@@ -96,8 +100,10 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                        <input name="phoneNumber" placeholder="(845)555-1212" class="form-control" type="text">
+                        <input name="phoneNumber" placeholder="" class="form-control" type="text">
+
                     </div>
+                    <p>{{$errors->first('phoneNumber')}}</p>
                 </div>
             </div>
 
@@ -156,8 +162,9 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input name="zip" placeholder="Zip Code" class="form-control"  type="text">
+                        <input name="zip" placeholder="" class="form-control"  type="text">
                     </div>
+                    <p>{{$errors->first('zip')}}</p>
                 </div>
             </div>
 
@@ -170,6 +177,7 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                         <input name="street" placeholder="Address" class="form-control" type="text">
                     </div>
+                    <p>{{$errors->first('street')}}</p>
                 </div>
             </div>
 
@@ -238,6 +246,7 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                         <textarea class="form-control" name="message" placeholder="Project Description"></textarea>
+                        <p>{{$errors->first('message')}}</p>
                     </div>
                 </div>
             </div>

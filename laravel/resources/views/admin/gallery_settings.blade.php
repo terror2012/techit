@@ -48,7 +48,7 @@
                     
                 </li>
                 <li class="item">
-                    <a href="index.blade.php"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>
+                    <a href="{{URL::previous()}}"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>
                 </li>
                 <hr />
                 <li class="item">
@@ -100,12 +100,12 @@
                             </thead>
                             <tbody>
                             @if(!empty($gallery))
-                                @foreach($gallery as $g)
+                                @foreach($gallery as $q)
                                     <tr>
-                                        <th scope="row">{{$g->id}}</th>
-                                        <td><img width="256" height="256" src="{{url($g->slider)}}"/></td>
-                                        <td>{{$g->caption}}</td>
-                                        <td> <a href="{{url('/admin/gallery/delete/'.$g->id)}}"><span class="fa fa-trash">Delete</span></a></td>
+                                        <th scope="row">{{$q->id}}</th>
+                                        <td><img width="256" height="256" src="{{url($q->slider)}}"/></td>
+                                        <td>{{$q->caption}}</td>
+                                        <td> <a href="{{url('/admin/gallery/delete/'.$q->id)}}"><span class="fa fa-trash">Delete</span></a></td>
                                         </tr>
                                 @endforeach
                             @endif

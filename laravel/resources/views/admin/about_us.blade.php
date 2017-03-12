@@ -85,7 +85,7 @@
 
                             <div class="form-group">
                                 <label for="preview">Preview Uploaded Image</label>
-                                <img id="preview" src="@if(!empty('about')) ../{{$about['image']}} @endif" width="256" height="256" alt="preview"/>
+                                <img id="preview" src="@if(!empty($about['image'])) {{url($about['image'])}} @endif" width="256" height="256" alt="preview"/>
                             </div>
                             
                             
@@ -117,7 +117,7 @@
           
   <div class="form-group">
     <label for="exampleTextarea">Enter Description Here</label>
-    <textarea class="form-control" name="description" id="exampleTextarea" rows="8">@if(!empty('description')) {{$about['description']}} @endif</textarea>
+    <textarea class="form-control" name="description" id="exampleTextarea" rows="8">@if(!empty($about['description'])) {{$about['description']}} @endif</textarea>
   </div>         
           
           <!-- Description End -->

@@ -26,8 +26,7 @@ class EditHowToController extends Controller
     }
     function editIndex($id)
     {
-        $how_to = howto::find($id)->first();
-        $how_toData = [];
+        $how_to = howto::find($id);
         $how_toData['id'] = $how_to->id;
         $how_toData['title'] = $how_to->title;
         $how_toData['youtube_url'] = $how_to->youtube_url;
@@ -38,7 +37,7 @@ class EditHowToController extends Controller
     }
     function edit($id, Request $r)
     {
-        $how_to = howto::find($id)->first();
+        $how_to = howto::find($id);
         if(Input::has('title')&& Input::has('description'))
         {
             $how_to->title=Input::get('title');
@@ -66,7 +65,7 @@ class EditHowToController extends Controller
     function add(Request $r)
     {
         $how_to = new howto();
-        if(Input::has('title') && Input::hasFile('files') && Input::has('description'))
+        if(Input::has('title') && Input::hasFile('files') && Input::has('description')&&Input::has('cat'))
         {
             $how_to->title = Input::get('title');
             $how_to->author = Auth::user()->name;
@@ -87,6 +86,7 @@ class EditHowToController extends Controller
             $this->uploadImage($r, $num, Input::file('files'));
             $how_to->thumbnail = 'img/'.$num.'.jpg';
             $how_to->fulltext = Input::get('description');
+            $how_to->section_id = Input::get('cat');
             $how_to->save();
         }
         return redirect()->route('howTo');

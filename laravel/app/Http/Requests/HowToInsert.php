@@ -36,7 +36,7 @@ class HowToInsert extends FormRequest
             'photo' => 'required|image',
             'description' => 'required|max:300',
             'link' => 'required',
-            'sectionID' =>'required'
+            'sectionID' =>'required',
         ];
     }
 }

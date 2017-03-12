@@ -26,7 +26,9 @@ class InvoiceHistory extends Migration
             $t->string('date');
             $t->string('time');
             $t->integer('status')->default('1'); //1-> processing, 0-> declined, 2->accepted, 3->paid
-            $t->string('notes');
+            $t->string('notes')->nullable();
+            $t->string('address');
+            $t->longText('message');
             $t->integer('invoice_sent'); //0-> not sent, 1->sent;
             $t->integer('reminders'); //Nr of Reminders
             $t->string('solved_at');

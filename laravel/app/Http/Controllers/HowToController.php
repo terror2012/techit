@@ -7,6 +7,7 @@ use App\Eloquent\how_section;
 use App\Eloquent\howto;
 use App\Http\Requests\HowToInsert;
 use Illuminate\Http\Request;
+Use \Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
@@ -45,10 +46,21 @@ class HowToController extends Controller
         return null;
 
     }
-    function submit(HowToInsert $r)
+    function submit(Request $r)
     {
-        if($r->has('title')&&$r->hasfile('photo')&&$r->has('description')&&$r->has('link'))
-        {
+        $rules = ['title' => 'required|max:150',
+            'photo' => 'required|image',
+            'description' => 'required|max:300',
+            'link' => 'required',
+            'sectionID' =>'required'];
+
+            $validator = Validator::make($r->all(), $rules);
+
+            if($validator->fails())
+            {
+                return redirect('/howto')->withErrors($validator);
+            }
+
             $title = strip_tags($r->get('title'));
             $name = $this->getID() . 'ht';
             $this->uploadImage($name, $r->file('photo'));
@@ -64,8 +76,6 @@ class HowToController extends Controller
             $howto->youtube_url = strip_tags($link);
             $howto->save();
             return redirect('/howto');
-        }
-        return redirect('/howto');
     }
     private function uploadImage($name, $file)
     {

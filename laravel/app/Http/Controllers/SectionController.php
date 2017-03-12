@@ -87,7 +87,7 @@ class SectionController extends Controller
     {
         $section = service_sections::find($id);
         $section->delete();
-        flash('Section' . $section->name .' has been deleted successfully', 'success');
+        flash('Section ' . $section->name .' has been deleted successfully', 'success');
         return redirect()->route('sections');
     }
     function addIndex()
@@ -97,7 +97,6 @@ class SectionController extends Controller
     function add()
     {
         $section = new service_sections();
-        $sec = service_sections::orderBy('id', 'desc')->take(1)->get();
         if(Input::has('name'))
         {
             $section->name = Input::get('name');
@@ -115,8 +114,8 @@ class SectionController extends Controller
                         $service->save();
                     }
                 }
-                $section->save();
             }
+            $section->save();
             return redirect()->route('sections');
         }
         return redirect()->route('sections');
