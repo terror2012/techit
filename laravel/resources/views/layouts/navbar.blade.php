@@ -25,9 +25,17 @@
                 <li>
                     <a class="page-scroll" href="{{url('/comments')}}">Comments</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="{{url('/schedule')}}">Schedule</a>
-                </li>
+                @if(Auth::check())
+                    @if(Auth::user()->rank !== '3')
+                        <li>
+                            <a class="page-scroll" href="{{url('/schedule')}}">Schedule</a>
+                        </li>
+                        @endif
+                    @else
+                    <li>
+                        <a class="page-scroll" href="{{url('/schedule')}}">Schedule</a>
+                    </li>
+                @endif
 
                 <?php
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http;
+use App\Http\Middleware\adminMyAcc;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -55,5 +56,6 @@ class Kernel extends HttpKernel
         'ban_system' => \App\Http\Middleware\ban_system::class,
         'sys_off' => \App\Http\Middleware\sys_off::class,
         'remote' => \App\Http\Middleware\remoteStatus::class,
+        'admin_user' => adminMyAcc::class,
     ];
 }
