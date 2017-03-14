@@ -17,7 +17,7 @@ class Invoices extends Migration
             $t->increments('id');
             $t->string('name');
             $t->string('email');
-            $t->integer('phone');
+            $t->string('phone');
             $t->longText('message');
             $t->integer('contact'); //1->email, 2->phone, 3->text
             $t->string('city');

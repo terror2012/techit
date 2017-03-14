@@ -18,7 +18,7 @@ class UserInfo extends Migration
            $t->string('first_name')->nullable();
            $t->string('last_name')->nullable();
            $t->string('email')->nullable();
-           $t->integer('phone')->nullable();
+           $t->string('phone')->nullable();
            $t->integer('contact')->nullable(); //1->email, 2->phone, 3->text
            $t->string('city')->nullable();
            $t->string('state')->nullable();

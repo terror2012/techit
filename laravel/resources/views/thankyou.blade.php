@@ -6,7 +6,7 @@
     <link href="{{url('/css/schedule.css')}}" rel="stylesheet">
     <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
 </head>
-<body>
+<body onload="setTimeout(redirect, 10000)">
 <style>
     #success_message {display: none;}
 </style>
@@ -44,6 +44,12 @@
         crossorigin="anonymous"></script>
 <script src="{{url('/js/bootstrap.min.js')}}"></script>
 </body>
+<script>
+    function redirect()
+    {
+        window.location = "{{url('/howto')}}";
+    }
+</script>
 <footer id="footer">
     <div class="container-fluid">
         <div class="row">
