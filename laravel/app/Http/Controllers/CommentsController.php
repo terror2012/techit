@@ -17,8 +17,7 @@ class CommentsController extends Controller
     {
         if(Auth::check())
         {
-            $usr = user_info::where('email', '=', Auth::user()->email)->first();
-            if($usr->rank == '3')
+            if(Auth::user()->rank == '3')
             {
                 $rank = 'admin';
             }
