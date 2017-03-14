@@ -28,9 +28,18 @@
                 <li>
                     <a class="page-scroll" href="{{url('/schedule')}}">Schedule</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="{{url('/remote_connect')}}">Remote Connect</a>
-                </li>
+
+                <?php
+
+                $remote = \App\Eloquent\general_settings::find('1')->remoteStatus;
+
+                    ?>
+
+                @if($remote == '1')
+                    <li>
+                        <a class="page-scroll" href="{{url('/remote_connect')}}">Remote Connect</a>
+                    </li>
+                @endif
 
                 <li>
                     <a class="page-scroll" href="{{url('/contact')}}">Contact</a>
@@ -91,22 +100,24 @@
 
                         <?php
 
+
+
                             $name = explode(' ', Auth::user()->name);
 
-                            $user_inf = \App\Eloquent\user_info::where('email', '=', (Auth::user()->email))->first();
+                            $length = count($name);
+
                         ?>
 
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{$name['1']}}  <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@if($length == '1') {{$name['0']}} @else {{$name['1']}} @endif <span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
-                            <li>
-                                <a class="page-scroll" href="{{url('/account')}}">My Account</a>
-                            </li>
-                            @if(!empty($user_inf))
-                            @if($user_inf->rank == "3")
+                            @if(Auth::user()->rank == "3")
                                 <li>
                                     <a class="page-scroll" href="{{url('/admin/')}}">Admin Panel</a>
                                 </li>
-                            @endif
+                                @else
+                                <li>
+                                    <a class="page-scroll" href="{{url('/account')}}">My Account</a>
+                                </li>
                             @endif
                             <li>
                                 <a class="page-scroll" href="{{url('/logout')}}">Log Out</a>

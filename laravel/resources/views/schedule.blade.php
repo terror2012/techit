@@ -60,7 +60,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input  name="firstName" placeholder="First Name" class="form-control"  type="text">
+                        <input  name="firstName" placeholder="First Name" class="form-control"  type="text" value="{{old('firstName')}}">
                     </div>
                     <p>{{$errors->first('firstName')}}</p>
                 </div>
@@ -73,7 +73,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="lastName" placeholder="Last Name" class="form-control"  type="text">
+                        <input name="lastName" placeholder="Last Name" class="form-control"  type="text" value="{{old('lastName')}}">
                     </div>
                         <p>{{$errors->first('lastName')}}</p>
                 </div>
@@ -85,7 +85,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
+                        <input name="email" placeholder="E-Mail Address" class="form-control"  type="text" value="{{old('email')}}">
 
                     </div>
                     <p>{{$errors->first('email')}}</p>
@@ -100,7 +100,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                        <input name="phoneNumber" placeholder="" class="form-control" type="text">
+                        <input name="phoneNumber" placeholder="Phone #" class="form-control" type="text" value="{{old('phoneNumber')}}">
 
                     </div>
                     <p>{{$errors->first('phoneNumber')}}</p>
@@ -162,7 +162,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input name="zip" placeholder="" class="form-control"  type="text">
+                        <input name="zip" placeholder="zip" class="form-control"  type="text" value="{{old('zip')}}">
                     </div>
                     <p>{{$errors->first('zip')}}</p>
                 </div>
@@ -175,7 +175,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input name="street" placeholder="Address" class="form-control" type="text">
+                        <input name="street" placeholder="Address" class="form-control" type="text" value="{{old('street')}}">
                     </div>
                     <p>{{$errors->first('street')}}</p>
                 </div>
@@ -245,7 +245,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                        <textarea class="form-control" name="message" placeholder="Project Description"></textarea>
+                        <textarea class="form-control" name="message" placeholder="Project Description">{{old('message')}}</textarea>
                         <p>{{$errors->first('message')}}</p>
                     </div>
                 </div>

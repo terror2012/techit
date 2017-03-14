@@ -111,6 +111,8 @@ Route::group(['middleware' => 'sys_off'], function(){
             Route::post('/how_to/add', 'EditHowToController@add');
             Route::get('/gallery', 'EditGalleryController@index')->name('gallery');
             Route::get('/gallery/delete/{id}', 'EditGalleryController@delete');
+            Route::get('/enable_remote', 'AdminIndexController@enable_remote');
+            Route::get('/disable_remote', 'AdminIndexController@disable_remote');
 
             /*GalleryRoutes*/
             Route::post('/gallery/add', 'EditGalleryController@add');

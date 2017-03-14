@@ -85,8 +85,8 @@ class ScheduleController extends Controller
         $rules = ['firstName' => 'required|alpha|max:15',
             'lastName'  => 'required|alpha|max:15',
             'email' => 'required|email',
-            'phoneNumber' => 'required|numeric|max:20',
-            'zip' => 'required|numeric|max:99999',
+            'phoneNumber' => 'required|numeric|digits_between:1,12',
+            'zip' => 'required|numeric|digits_between:1,5',
             'street' => 'required|max:25',
             'message' => 'required|max:200',];
 
@@ -170,6 +170,22 @@ class ScheduleController extends Controller
     }
     function reg(Request $r)
     {
+
+        $rules = ['firstName' => 'required|alpha|max:15',
+            'lastName'  => 'required|alpha|max:15',
+            'email' => 'required|email',
+            'phoneNumber' => 'required|numeric|digits_between:1,12',
+            'zip' => 'required|numeric|digits_between:1,5',
+            'street' => 'required|max:25',
+            'message' => 'required|max:200',];
+
+        $validator = Validator::make($r->all(), $rules);
+
+        if($validator->fails())
+        {
+            return redirect('/schedule')->withErrors($validator);
+        }
+
         if($r->has('firstName') && $r->has('lastName') && $r->has('email') && $r->has('phoneNumber')&&$r->has('city')&&$r->has('zip') && $r->has('street')&&$r->has('client')&&$r->has('state')&&$r->has('date')&&$r->has('time')&&$r->has('contact')&&$r->has('message'))
         {
             $fname = $r->get('firstName');
@@ -216,6 +232,22 @@ class ScheduleController extends Controller
     }
     function checkout(Request $r)
     {
+
+        $rules = ['firstName' => 'required|alpha|max:15',
+            'lastName'  => 'required|alpha|max:15',
+            'email' => 'required|email',
+            'phoneNumber' => 'required|numeric|digits_between:1,12',
+            'zip' => 'required|numeric|digits_between:1,5',
+            'street' => 'required|max:25',
+            'message' => 'required|max:200',];
+
+        $validator = Validator::make($r->all(), $rules);
+
+        if($validator->fails())
+        {
+            return redirect('/schedule')->withErrors($validator);
+        }
+
         if($r->has('stripeToken'))
         {
             $formData = $r->session()->get('formData');
@@ -300,6 +332,23 @@ class ScheduleController extends Controller
     }
     function PayAsGuest(Request $r)
     {
+
+        $rules = ['firstName' => 'required|alpha|max:15',
+            'lastName'  => 'required|alpha|max:15',
+            'email' => 'required|email',
+            'phoneNumber' => 'required|numeric|digits_between:1,12',
+            'zip' => 'required|numeric|digits_between:1,5',
+            'street' => 'required|max:25',
+            'message' => 'required|max:200',];
+
+        $validator = Validator::make($r->all(), $rules);
+
+        if($validator->fails())
+        {
+            return redirect('/schedule')->withErrors($validator);
+        }
+
+
         if($r->has('firstName') && $r->has('lastName') && $r->has('email') && $r->has('phoneNumber')&&$r->has('city')&&$r->has('zip') && $r->has('street')&&$r->has('client')&&$r->has('state')&&$r->has('date')&&$r->has('time')&&$r->has('contact')&&$r->has('message'))
         {
             $fname = $r->get('firstName');

@@ -13,10 +13,10 @@
     @include('layouts/navbar')
     
    <!-- Jumbotron -->
-    <div class="jumbotron" style="@if(!empty($gen['service_img']))background-image: url('{{url($gen['service_img'])}}') @endif">
+    <div class="jumbotron" style="@if(!empty($serv['service_img'])) background-image: url('{{url($serv['service_img'])}}') @endif">
     <div class="container">
         <h1>Services</h1>
-        <h2>@if(!empty($gen['service_capt'])){{$gen['service_capt']}} @endif</h2>
+        <h2>@if(!empty($serv['service_capt'])){{$serv['service_capt']}} @endif</h2>
         
         
         </div>

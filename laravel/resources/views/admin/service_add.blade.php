@@ -90,6 +90,10 @@
                             <label for="link">Youtube Video Link</label>
                             <input type="text" class="form-control" name="link" id="link" value=""/>
                         </div>
+                        <div class="form-group">
+                            <label for="section">Section ID</label>
+                            <input type="text" class="form-control" name="section" id="section" value=""/>
+                        </div>
                         <!-- Title End -->
 
 

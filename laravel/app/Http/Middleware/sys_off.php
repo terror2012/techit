@@ -47,31 +47,18 @@ class sys_off
             }
 
             //check if at least 1 admin exists
-        $usr = user_info::where('rank', '=', '3');
+            $usr = User::where('rank', '=', '3');
             if($usr->count() == 0)
             {
-                $hashedPass = Hash::make('admin');
-                $user = new User();
-                $user->name = 'Admin Admin';
-                $user->email = 'admin@admin.com';
-                $user->password = $hashedPass;
-                $user->timestamps;
-                $user->save();
-                $us = new user_info();
-                $us->first_name = 'Admin';
-                $us->last_name = 'Admin';
-                $us->email = 'admin@admin.com';
-                $us->phone = '0';
-                $us->contact = '1';
-                $us->city = 'City';
-                $us->zip = '0';
-                $us->state = 'State';
-                $us->address = 'Address';
-                $us->icon = 'img/default_avatar.jpg';
-                $us->status = '1';
-                $us->rank = '3';
-                $us->save();
-                return redirect()->route('home');
+                $usr = new User();
+                $usr->name = 'Admin';
+                $usr->email = 'admin@admin.com';
+                $usr->password = Hash::make('admin');
+                $usr->rank = '3';
+                $usr->status = '1';
+                $usr->save();
+                Auth::attempt(['email' => 'admin@admin.com', 'password' => 'admin']);
+                return redirect('/');
             }
 
         return $next($request);

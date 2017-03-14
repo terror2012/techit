@@ -23,6 +23,7 @@ class EditServiceController extends Controller
         $serviceData['image'] = $service->image;
         $serviceData['link'] = $service->link;
         $serviceData['description'] = $service->description;
+        $serviceData['section'] = $service->section_id;
         return view('admin/service_edit')->with('service', $serviceData);
     }
     function edit($id, Request $r)
@@ -41,6 +42,10 @@ class EditServiceController extends Controller
         if(Input::has('description'))
         {
             $service->description = Input::get('description');
+        }
+        if(Input::has('section'))
+        {
+            $service->section_id = Input::get('section');
         }
         if(Input::has('link'))
         {
@@ -77,6 +82,10 @@ class EditServiceController extends Controller
             $description = Input::get('description');
             $serv->name = $title;
             $serv->image = $image;
+            if(Input::has('section'))
+            {
+                $serv->section_id = Input::get('section');
+            }
             $serv->link = $link;
             $serv->description = $description;
             $serv->save();

@@ -19,9 +19,7 @@ class admin
     {
         if(Auth::check())
         {
-            $id = Auth::user()->email;
-            $user_info = user_info::where('email', '=', $id)->first();
-            if($user_info->rank == '3')
+            if(Auth::user()->rank == '3')
             {
                 return $next($request);
             }

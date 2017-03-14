@@ -90,8 +90,11 @@
                         <a href="{{url('/admin/edit_contact')}}"><button class="btn-lg btn-primary">Change Contact Information</button></a>
                         <a href="{{url('/admin/service')}}"><button class="btn-lg btn-primary">Change Active Services</button></a>
                         <a href="{{url('/admin/about_us')}}"><button class="btn-lg btn-primary">Change About Us Page</button></a>
-                        
-                        
+                        @if($status == '0')
+                            <a href="{{url('/admin/enable_remote')}}"><button class="btn-lg btn-primary">Activate Remote Control</button></a>
+                        @else
+                            <a href="{{url('/admin/disable_remote')}}"><button class="btn-lg btn-primary">Deactivate Remote Control</button></a>
+                        @endif
                     </div>
                 </div>
             </div>

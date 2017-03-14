@@ -26,8 +26,11 @@ class UserInfo extends Migration
            $t->string('address')->nullable();
            $t->string('ip_address')->nullable();
            $t->string('icon')->default('img/default_avatar.jpg');
-           $t->integer('status')->default('1'); //1-> active, 0->banned
+        });
+        Schema::table('users', function(Blueprint $t)
+        {
            $t->integer('rank')->default('1'); //1->normal, 2->moderator, 3->administrator
+           $t->integer('status')->default('1'); //1-> active, 0->banned
         });
     }
 

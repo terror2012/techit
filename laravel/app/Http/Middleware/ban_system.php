@@ -18,9 +18,7 @@ class ban_system
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-            $id = Auth::user()->email;
-            $user_info = user_info::where('email', '=', $id)->first();
-            if ($user_info->status == '1') {
+            if (Auth::user()->status == '1') {
                 return $next($request);
             } else {
                 return redirect()->route('banned');
