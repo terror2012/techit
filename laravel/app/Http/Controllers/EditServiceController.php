@@ -86,7 +86,10 @@ class EditServiceController extends Controller
             {
                 $serv->section_id = Input::get('section');
             }
-            $serv->link = $link;
+            if(Input::has('link'))
+            {
+                $serv->link = $link;
+            }
             $serv->description = $description;
             $serv->save();
         }
