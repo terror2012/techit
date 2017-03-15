@@ -206,7 +206,7 @@ class EditGalleryController extends Controller
 
             $gen->service_capt = Input::get('serviceCaption');
             $gen->save();
-            flash('About Page Info changed Successful', 'success');
+            flash('Service Page Info changed Successful', 'success');
             return redirect()->route('gallery');
         }
         return redirect()->route('gallery');
