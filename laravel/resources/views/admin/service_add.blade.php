@@ -67,7 +67,7 @@
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
-    <div id="page-content-wrapper">
+    <div id="page-content-wrapper">m
         <div class="container-fluid">
             <div class="row">
                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>

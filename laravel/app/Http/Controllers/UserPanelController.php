@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Eloquent\general_settings;
+use App\Eloquent\invoices;
 use App\Eloquent\payment_history;
 use App\Eloquent\queries;
 use App\Eloquent\query_data;
@@ -202,6 +203,24 @@ class UserPanelController extends Controller
                 return redirect('/thanksyou');
             }
             return redirect('/account');
+        }
+
+        function delete_invoice($id)
+        {
+            $invoice = queries::find($id);
+            if($invoice->paid == '0')
+            {
+                $invoice->delete();
+                $query = query_data::where('query_id', '=', $id);
+                $query->delete();
+            }
+            else
+            {
+                flash("Couldn't delete appointment, already paid. Please contact the administrator regarding refund/cancel", 'danger');
+                return redirect()->route('account');
+            }
+
+
         }
 
 }

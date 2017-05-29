@@ -148,7 +148,13 @@
   </div>
                              <button type="submit" class="btn-lg btn-danger"><strong>Edit My Details Details</strong></button>
                          </form>
+                    @if (session()->has('flash_notification.message'))
+                        <div class="alert alert-{{ session('flash_notification.level') }}">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
+                            {!! session('flash_notification.message') !!}
+                        </div>
+                    @endif
                              <table class="table">
                            
                           <!-- /extra icons -->  
