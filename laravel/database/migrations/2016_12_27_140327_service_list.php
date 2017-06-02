@@ -18,6 +18,8 @@ class ServiceList extends Migration
            $t->integer('section_id')->nullable();
            $t->string('name');
            $t->string('image');
+           $t->string('icon');
+           $t->string('small_description');
            $t->string('link')->nullable();
            $t->string('description');
         });

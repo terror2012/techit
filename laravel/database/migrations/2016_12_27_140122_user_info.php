@@ -13,24 +13,20 @@ class UserInfo extends Migration
      */
     public function up()
     {
-        Schema::create('user_info', function(Blueprint $t){
-           $t->increments('id');
-           $t->string('first_name')->nullable();
-           $t->string('last_name')->nullable();
-           $t->string('email')->nullable();
-           $t->string('phone')->nullable();
-           $t->integer('contact')->nullable(); //1->email, 2->phone, 3->text
-           $t->string('city')->nullable();
-           $t->string('state')->nullable();
-           $t->integer('zip')->nullable();
-           $t->string('address')->nullable();
-           $t->string('ip_address')->nullable();
-           $t->string('icon')->default('img/default_avatar.jpg');
-        });
         Schema::table('users', function(Blueprint $t)
         {
-           $t->integer('rank')->default('1'); //1->normal, 2->moderator, 3->administrator
-           $t->integer('status')->default('1'); //1-> active, 0->banned
+            $t->string('first_name')->nullable();
+            $t->string('last_name')->nullable();
+            $t->string('phone')->nullable();
+            $t->integer('contact')->nullable(); //1->email, 2->phone, 3->text
+            $t->string('city')->nullable();
+            $t->string('state')->nullable();
+            $t->integer('zip')->nullable();
+            $t->string('address')->nullable();
+            $t->string('ip_address')->nullable();
+            $t->string('icon')->default('img/default_avatar.jpg');
+            $t->integer('rank')->default('1'); //1->Normal, 2->Mod, 3->Admin
+            $t->integer('status')->default('1'); //1->active, 0->banned
         });
     }
 
@@ -41,6 +37,6 @@ class UserInfo extends Migration
      */
     public function down()
     {
-        Schema::drop('user_info');
+
     }
 }
